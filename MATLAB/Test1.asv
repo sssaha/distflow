@@ -1,0 +1,24 @@
+clc
+clear
+close all
+%% Load the components related to OpenDSS
+[DSSObj, DSSText, gridpvpath] = DSSStartup;
+DSSSolution=DSSObj.ActiveCircuit.Solution;
+DSSText.command = 'Clear';
+BaseParam=struct();
+Baseparam.slack_voltage=1.02;
+time_array=zeros(1,200)
+%%
+DSSText.command = 'Redirect C:\feeders\MultiPhase\13Bus\IEEE13Nodeckt.dss';
+setSourceInfo(DSSObj,{'source'},'pu',Baseparam.slack_voltage);
+disp('Simulating 13 bus')
+% tic
+for i = 1:200
+    DSSSolution.Solve();
+end
+if (~DSSSolution.Converged)
+    error('Solution Not Converged. Check Model for Convergence');
+end
+t = toc;
+sprintf('Displaying Solution Time: %f', t)
+
