@@ -57,6 +57,7 @@ if nargin < 3
     opt = [];
 end
 opt = optdefaults(opt);
+
 if nargin == 0
     %%% Demo
     %%% a1 ---- b1 ----- c1
@@ -84,7 +85,7 @@ else
     ephasing = {branch.phase}.';
     nphasing = {bus.phase}.';
 end
-% disp(opt.mats_gen)
+
 if ~opt.mats_gen && (nargout~=3)
 	error('distflow_multi: Output argument error. Number of outputs with opt.mat_gen=0 must be 2')
 elseif opt.mats_gen && (nargout~=6)
@@ -271,14 +272,7 @@ if opt.calcmu
 else
     nu = (Beta*conn.M - K)\(Beta*conn.M*v0 + zeta*sigma + eta*conj(sigma));
 end
-start_time = tic;
-v2 = conn.U*nu;
-if (max(abs(imag(v2))) > 1e-8) && ~opt.suppress_warnings
-    warning(['distflow_multi: imaginary entries in v^2 with magnitude larger than 1e-8 found.\n\t',...
-             'Max imaginary magnitude is %0.4g.\n\t These are discarded in the result'], max(abs(imag(v2))))
-end
-v = sqrt(real(v2));
-end_time = toc(start_time);
+
 
 if opt.alpha_method > 1
   xi  = (kdiag(Yconj, ydalpha, ephasing) - kdiag(ycalpha, Y, ephasing))*conn.M*(nu - v0);
@@ -288,8 +282,21 @@ end
 psi = conn.B*(conn.TE*kdiag('eye','gamma', nphasing(2:end))*sigma +...
   kdiag(yl, 'eye', nphasing(2:end))*nu + kdiag('eye',{branch.Z},ephasing)*xi);
 
-varargout{1} = updatebus(bus,v);
-varargout{2}   = updatebranch(branch, conn.U*psi);
+
+start_time = tic;
+for i = 1: opt.number_iteration
+    v2 = conn.U*nu;
+    if (max(abs(imag(v2))) > 1e-8) && ~opt.suppress_warnings
+        warning(['distflow_multi: imaginary entries in v^2 with magnitude larger than 1e-8 found.\n\t',...
+                 'Max imaginary magnitude is %0.4g.\n\t These are discarded in the result'], max(abs(imag(v2))))
+    end
+    v = sqrt(real(v2));
+    branch_flow = conn.U*psi;
+end
+end_time = toc(start_time);
+
+varargout{1}   = updatebus(bus,v);
+varargout{2}   = updatebranch(branch, branch_flow );
 varargout{3}   = end_time;
 %% Utility functions
 function S = connmats(bus, branch)
@@ -547,7 +554,7 @@ for k = 1:length(branch)
 end
 
 function opt = optdefaults(opt)
-optd = struct('alpha', 0.5, 'alpha_method', 1, 'mats_gen', 0, 'gamma_method', 1, 'calcmu', 0, 'bustmpopt', [], 'suppress_warnings', 0);
+optd = struct('alpha', 0.5, 'alpha_method', 1, 'mats_gen', 0, 'gamma_method', 1, 'calcmu', 0, 'bustmpopt', [], 'suppress_warnings', 0, 'number_iteration' , 1);
 if isempty(opt)
     opt = optd;
 else
