@@ -7,7 +7,7 @@ import time
 
 
 slack_bus_voltage = 1.02
-dss.run_command('Compile ' + 'C:/feeders/MultiPhase/34Bus/ieee34Mod1.dss')  # redirecting to the model
+dss.run_command('Compile feeder34_test.dss')  # redirecting to the model
 # print (os.getcwd())
 dss.Vsources.PU(slack_bus_voltage)  # setting up the slack bus voltage
 # Setting up the solution parameters, check OpenDSS documentation for details

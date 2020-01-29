@@ -1,0 +1,179 @@
+// PROJECT: 33Bus_radial_test - https://www.xendee.com/Studio/Launch/faeaea0a-9c60-4ad0-b489-9565ef65ab46
+// STUDY: Regulator_Transformer
+// DATE GENERATED: Fri, 31 May 2019 20:36:16 GMT
+
+// This script was auto-created by www.xendee.com for execution on OpenDSS version 7.6.5.13.
+// Learn more about OpenDSS at http://smartgrid.epri.com/SimulationTool.aspx
+
+Clear
+Set DefaultBaseFrequency=60
+
+// Source bus
+New "Circuit.utility 01" phases=3 BasekV=12.66 pu=1.04 Angle=0 BaseMVA=100 MVAsc1=100 MVAsc3=100 X1=0.001 R1=0 X0=0.001 R0=0
+
+// Loads and motors
+New "Load.load 05" Bus1="load 05.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=67.11409396 Pf=0.894 VminPU=0.95 Model=1
+New "Load.load 06" Bus1="load 06.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=63.29113924 Pf=0.948 VminPU=0.95 Model=1
+New "Load.load 07" Bus1="load 07.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=223.71364653 Pf=0.894 VminPU=0.95 Model=1
+New "Load.load 08" Bus1="load 08.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=223.71364653 Pf=0.894 VminPU=0.95 Model=1
+New "Load.load 09" Bus1="load 09.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=63.22444679 Pf=0.949 VminPU=0.95 Model=1
+New "Load.load 10" Bus1="load 10.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=63.22444679 Pf=0.949 VminPU=0.95 Model=1
+New "Load.load 11" Bus1="load 11.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=54.08653846 Pf=0.832 VminPU=0.95 Model=1
+New "Load.load 12" Bus1="load 12.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=69.44444444 Pf=0.864 VminPU=0.95 Model=1
+New "Load.load 13" Bus1="load 13.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=69.44444444 Pf=0.864 VminPU=0.95 Model=1
+New "Load.load 14" Bus1="load 14.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=144.23076923 Pf=0.832 VminPU=0.95 Model=1
+New "Load.load 16" Bus1="load 16.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=63.22444679 Pf=0.949 VminPU=0.95 Model=1
+New "Load.load 17" Bus1="load 17.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=63.22444679 Pf=0.949 VminPU=0.95 Model=1
+New "Load.load 18" Bus1="load 18.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=98.46827133 Pf=0.914 VminPU=0.95 Model=1
+New "Load.load 19" Bus1="load 19.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=98.46827133 Pf=0.914 VminPU=0.95 Model=1
+New "Load.load 20" Bus1="load 20.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=98.46827133 Pf=0.914 VminPU=0.95 Model=1
+New "Load.load 21" Bus1="load 21.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=98.46827133 Pf=0.914 VminPU=0.95 Model=1
+New "Load.load 22" Bus1="load 22.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=98.46827133 Pf=0.914 VminPU=0.95 Model=1
+New "Load.load 23" Bus1="load 23.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=102.97482838 Pf=0.874 VminPU=0.95 Model=1
+New "Load.load 24" Bus1="load 24.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=465.11627907 Pf=0.903 VminPU=0.95 Model=1
+New "Load.load 25" Bus1="load 25.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=465.11627907 Pf=0.903 VminPU=0.95 Model=1
+New "Load.load 26" Bus1="load 26.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=65.00541712 Pf=0.923 VminPU=0.95 Model=1
+New "Load.load 27" Bus1="load 27.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=65.00541712 Pf=0.923 VminPU=0.95 Model=1
+New "Load.load 28" Bus1="load 28.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=63.22444679 Pf=0.949 VminPU=0.95 Model=1
+New "Load.load 29" Bus1="load 29.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=138.88888889 Pf=0.864 VminPU=0.95 Model=1
+New "Load.load 30" Bus1="load 30.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=632.91139241 Pf=0.316 VminPU=0.95 Model=1
+New "Load.load 31" Bus1="load 31.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=165.56291391 Pf=0.906 VminPU=0.95 Model=1
+New "Load.load 32" Bus1="load 32.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=232.55813953 Pf=0.903 VminPU=0.95 Model=1
+New "Load.load 33" Bus1="load 33.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=72.11538462 Pf=0.832 VminPU=0.95 Model=1
+New "Load.load_02" Bus1="load_02.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=116.68611435 Pf=0.857 VminPU=0.95 Model=1
+New "Load.load_03" Bus1="load_03.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=98.46827133 Pf=0.914 VminPU=0.95 Model=1
+New "Load.load_04" Bus1="load_04.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=144.23076923 Pf=0.832 VminPU=0.95 Model=1
+New "Load.load_15" Bus1="load_15.1.2.3.0" phases=3 Conn="wye" kV=12.66 kVA=60.85192698 Pf=0.986 VminPU=0.95 Model=1
+
+// Linecodes
+New "Linecode.LC-custom_6e269bc7-3c8c-46a7-940b-5fe3187994ee" nphases=3 R1=0.0922 X1=0.0477 R0=0.0922 X0=0.0477 Units="kft" Normamps=150
+New "Linecode.LC-custom_69edc591-860b-416f-b8df-50f9731b89e6" nphases=3 R1=0.493 X1=0.2511 R0=0.439 X0=0.2511 Units="kft" Normamps=150
+New "Linecode.LC-custom_49bbe510-4660-405a-922b-f0172e007580" nphases=3 R1=0.366 X1=0.1864 R0=0.366 X0=0.1864 Units="kft" Normamps=150
+New "Linecode.LC-custom_1903108a-e5f5-471b-9525-4f52b309ab19" nphases=3 R1=0.3811 X1=0.1941 R0=0.3811 X0=0.1941 Units="kft" Normamps=150
+New "Linecode.LC-custom_845be5e5-f173-4017-a005-9772e7273a5c" nphases=3 R1=0.819 X1=0.707 R0=0.819 X0=0.707 Units="kft" Normamps=150
+New "Linecode.LC-custom_1afbb7af-d8b2-4a79-87dc-2663d2d5c9aa" nphases=3 R1=0.1872 X1=0.6188 R0=0.1872 X0=0.6188 Units="kft" Normamps=225
+New "Linecode.LC-custom_a3df17c7-49e6-4b68-9b37-66fefc3b9e02" nphases=3 R1=1.7114 X1=1.2351 R0=1.7114 X0=1.2351 Units="kft" Normamps=150
+New "Linecode.LC-custom_fabccefc-17b5-4f07-9d63-d64095bc1743" nphases=3 R1=1.03 X1=0.74 R0=1.03 X0=0.74 Units="kft" Normamps=150
+New "Linecode.LC-custom_573acad6-5670-480c-8f58-84b9a5082e03" nphases=3 R1=1.04 X1=0.74 R0=1.04 X0=0.74 Units="kft" Normamps=150
+New "Linecode.LC-custom_4ca61110-35a6-4dd9-8e8b-b62f104e0d0c" nphases=3 R1=0.1966 X1=0.065 R0=0.1966 X0=0.0655 Units="kft" Normamps=150
+New "Linecode.LC-custom_d69755db-9b5a-4981-91fa-234dff3d0430" nphases=3 R1=0.3744 X1=0.1238 R0=0.3744 X0=0.1238 Units="kft" Normamps=150
+New "Linecode.LC-custom_7769164c-0ece-4e92-962d-e00c5e399210" nphases=3 R1=1.468 X1=1.155 R0=1.468 X0=1.155 Units="kft" Normamps=150
+New "Linecode.LC-custom_7051e6f8-678d-4138-a269-77ae134170e9" nphases=3 R1=0.5416 X1=0.7129 R0=0.5416 X0=0.7129 Units="kft" Normamps=150
+New "Linecode.LC-custom_4b1e692b-7ccc-4cc2-8a1a-864b3414e809" nphases=3 R1=0.591 X1=0.526 R0=0.591 X0=0.526 Units="kft" Normamps=150
+New "Linecode.LC-custom_15b20b39-7ef3-4bbf-910b-1be7eea83e84" nphases=3 R1=0.7463 X1=0.545 R0=0.7463 X0=0.545 Units="kft" Normamps=150
+New "Linecode.LC-custom_73b279ff-b8a2-4b48-80ef-cc63fdb5965d" nphases=3 R1=1.289 X1=1.721 R0=1.289 X0=1.721 Units="kft" Normamps=150
+New "Linecode.LC-custom_e9fcc266-7815-4160-90d5-50c827980f5a" nphases=3 R1=0.732 X1=0.574 R0=0.732 X0=0.574 Units="kft" Normamps=150
+New "Linecode.LC-custom_36a4581e-c986-4c08-90a3-f36b12b86a92" nphases=3 R1=0.164 X1=0.1565 R0=0.164 X0=0.1565 Units="kft" Normamps=150
+New "Linecode.LC-custom_325b46fe-e4d8-446a-ab23-4eb95e6ccd7b" nphases=3 R1=1.5042 X1=1.3554 R0=1.5042 X0=1.3554 Units="kft" Normamps=150
+New "Linecode.LC-custom_5a9befcb-34c9-4343-be71-5925df45e6ee" nphases=3 R1=0.4095 X1=0.4784 R0=0.4095 X0=0.4784 Units="kft" Normamps=150
+New "Linecode.LC-custom_dc0e30d7-fc62-456a-8fa0-ef3f9b54c423" nphases=3 R1=0.7089 X1=0.9373 R0=0.7089 X0=0.9373 Units="kft" Normamps=150
+New "Linecode.LC-custom_772efff6-504e-4e5e-a569-8db23b3fe4c8" nphases=3 R1=0.4512 X1=0.3083 R0=0.4512 X0=0.3083 Units="kft" Normamps=150
+New "Linecode.LC-custom_3496c401-7844-4b40-9c0f-26eaebe40ea6" nphases=3 R1=0.898 X1=0.7091 R0=0.898 X0=0.7091 Units="kft" Normamps=150
+New "Linecode.LC-custom_912e4cdb-4b3f-46a6-9bc0-0d86fc9214c0" nphases=3 R1=0.896 X1=0.7011 R0=0.896 X0=0.7011 Units="kft" Normamps=150
+New "Linecode.LC-custom_ccdcc438-7c55-4d0f-87a8-23ebf4d9dad2" nphases=3 R1=0.203 X1=0.1034 R0=0.203 X0=0.1034 Units="kft" Normamps=150
+New "Linecode.LC-custom_1b4e9ff5-4bbf-43cc-9a79-82e34b2f0373" nphases=3 R1=0.2842 X1=0.1447 R0=0.2842 X0=0.1447 Units="kft" Normamps=150
+New "Linecode.LC-custom_b0e8cfc8-c50a-495a-87c0-ea3e7fbc6945" nphases=3 R1=1.059 X1=0.9337 R0=1.059 X0=0.9337 Units="kft" Normamps=150
+New "Linecode.LC-custom_e7ab859d-1531-4565-90c9-71e438968979" nphases=3 R1=0.8042 X1=0.7006 R0=0.8042 X0=0.7006 Units="kft" Normamps=150
+New "Linecode.LC-custom_f79128ae-47ba-499a-9c91-aba80070cbcb" nphases=3 R1=0.5075 X1=0.2585 R0=0.5075 X0=0.2585 Units="kft" Normamps=150
+New "Linecode.LC-custom_9cf3b575-5d36-4145-84fb-feea24a5fbeb" nphases=3 R1=0.9744 X1=0.963 R0=0.9744 X0=0.963 Units="kft" Normamps=150
+New "Linecode.LC-custom_1323a128-059c-4920-b57d-837da5e9854c" nphases=3 R1=0.3105 X1=0.3619 R0=0.3105 X0=0.3619 Units="kft" Normamps=150
+New "Linecode.LC-custom_98b17665-aedd-4b24-b4e3-7addb497196a" nphases=3 R1=2 X1=2 R0=2 X0=2 Units="kft" Normamps=150
+New "Linecode.LC-custom_e54c15a7-75a9-4d0a-bd22-335882ebcdf6" nphases=3 R1=2 X1=2 R0=2 X0=2 Units="kft" Normamps=150
+New "Linecode.LC-custom_61a5ab6c-ab4a-4c31-8531-7c0428a12142" nphases=3 R1=2 X1=2 R0=2 X0=2 Units="kft" Normamps=150
+New "Linecode.LC-custom_903ee3ec-2b49-4c91-86a6-4f2c1cd46e11" nphases=3 R1=0.5 X1=0.5 R0=0.5 X0=0.5 Units="kft" Normamps=150
+New "Linecode.LC-custom_94701586-7ed9-405c-b668-55b5d144ee41" nphases=3 R1=0.5 X1=0.5 R0=0.5 X0=0.5 Units="kft" Normamps=150
+
+// Lines, Automatic Transfer Switches (ATS) and Direct Connections
+New "Line.conn 01" Bus1="sourcebus.1.2.3" Bus2="busbar 01.1.2.3" phases=3 Switch=True
+New "Line.conn 02" Bus1="busbar 02.1.2.3" Bus2="load_02.1.2.3" phases=3 Switch=True
+New "Line.conn 03" Bus1="busbar 03.1.2.3" Bus2="load_03.1.2.3" phases=3 Switch=True
+New "Line.conn 04" Bus1="busbar 04.1.2.3" Bus2="load_04.1.2.3" phases=3 Switch=True
+New "Line.conn 05" Bus1="busbar 05.1.2.3" Bus2="load 05.1.2.3" phases=3 Switch=True
+New "Line.conn 06" Bus1="busbar 06.1.2.3" Bus2="load 06.1.2.3" phases=3 Switch=True
+New "Line.conn 07" Bus1="busbar 07.1.2.3" Bus2="load 07.1.2.3" phases=3 Switch=True
+New "Line.conn 08" Bus1="busbar 08.1.2.3" Bus2="load 08.1.2.3" phases=3 Switch=True
+New "Line.conn 09" Bus1="busbar 09.1.2.3" Bus2="load 09.1.2.3" phases=3 Switch=True
+New "Line.conn 10" Bus1="busbar 10.1.2.3" Bus2="load 10.1.2.3" phases=3 Switch=True
+New "Line.conn 11" Bus1="busbar 11.1.2.3" Bus2="load 11.1.2.3" phases=3 Switch=True
+New "Line.conn 12" Bus1="busbar 12.1.2.3" Bus2="load 12.1.2.3" phases=3 Switch=True
+New "Line.conn 13" Bus1="busbar 13.1.2.3" Bus2="load 13.1.2.3" phases=3 Switch=True
+New "Line.conn 14" Bus1="busbar 14.1.2.3" Bus2="load 14.1.2.3" phases=3 Switch=True
+New "Line.conn 15" Bus1="busbar 16.1.2.3" Bus2="load 16.1.2.3" phases=3 Switch=True
+New "Line.conn 16" Bus1="busbar 15.1.2.3" Bus2="load_15.1.2.3" phases=3 Switch=True
+New "Line.conn 17" Bus1="busbar 17.1.2.3" Bus2="load 17.1.2.3" phases=3 Switch=True
+New "Line.conn 18" Bus1="busbar 18.1.2.3" Bus2="load 18.1.2.3" phases=3 Switch=True
+New "Line.conn 19" Bus1="busbar 19.1.2.3" Bus2="load 19.1.2.3" phases=3 Switch=True
+New "Line.conn 20" Bus1="busbar 20.1.2.3" Bus2="load 20.1.2.3" phases=3 Switch=True
+New "Line.conn 21" Bus1="busbar 21.1.2.3" Bus2="load 21.1.2.3" phases=3 Switch=True
+New "Line.conn 22" Bus1="busbar 22.1.2.3" Bus2="load 22.1.2.3" phases=3 Switch=True
+New "Line.conn 23" Bus1="busbar 23.1.2.3" Bus2="load 23.1.2.3" phases=3 Switch=True
+New "Line.conn 24" Bus1="busbar 24.1.2.3" Bus2="load 24.1.2.3" phases=3 Switch=True
+New "Line.conn 25" Bus1="busbar 25.1.2.3" Bus2="load 25.1.2.3" phases=3 Switch=True
+New "Line.conn 26" Bus1="busbar 26.1.2.3" Bus2="load 26.1.2.3" phases=3 Switch=True
+New "Line.conn 27" Bus1="busbar 27.1.2.3" Bus2="load 27.1.2.3" phases=3 Switch=True
+New "Line.conn 28" Bus1="busbar 28.1.2.3" Bus2="load 28.1.2.3" phases=3 Switch=True
+New "Line.conn 29" Bus1="busbar 29.1.2.3" Bus2="load 29.1.2.3" phases=3 Switch=True
+New "Line.conn 30" Bus1="busbar 30.1.2.3" Bus2="load 30.1.2.3" phases=3 Switch=True
+New "Line.conn 31" Bus1="busbar 31.1.2.3" Bus2="load 31.1.2.3" phases=3 Switch=True
+New "Line.conn 32" Bus1="busbar 32.1.2.3" Bus2="load 32.1.2.3" phases=3 Switch=True
+New "Line.conn 33" Bus1="busbar 33.1.2.3" Bus2="load 33.1.2.3" phases=3 Switch=True
+New "Line.conn 36" Bus1="busbar 22.1.2.3" Bus2="motor 01.1.2.3" phases=3 Switch=True
+New "Line.Line_01" Bus1="busbar 01.1.2.3" Bus2="busbar 02.1.2.3" LineCode="LC-custom_6e269bc7-3c8c-46a7-940b-5fe3187994ee" Length=1000 Units="ft"
+New "Line.Line_02" Bus1="busbar 02.1.2.3" Bus2="busbar 03.1.2.3" LineCode="LC-custom_69edc591-860b-416f-b8df-50f9731b89e6" Length=1000 Units="ft"
+New "Line.Line_03" Bus1="busbar 03.1.2.3" Bus2="busbar 04.1.2.3" LineCode="LC-custom_49bbe510-4660-405a-922b-f0172e007580" Length=1000 Units="ft"
+New "Line.Line_04" Bus1="busbar 04.1.2.3" Bus2="busbar 05.1.2.3" LineCode="LC-custom_1903108a-e5f5-471b-9525-4f52b309ab19" Length=1000 Units="ft"
+New "Line.Line_05" Bus1="busbar 05.1.2.3" Bus2="busbar 06.1.2.3" LineCode="LC-custom_845be5e5-f173-4017-a005-9772e7273a5c" Length=100 Units="ft"
+New "Line.Line_06" Bus1="busbar 06.1.2.3" Bus2="busbar 07.1.2.3" LineCode="LC-custom_1afbb7af-d8b2-4a79-87dc-2663d2d5c9aa" Length=1000 Units="ft"
+New "Line.Line_07" Bus1="busbar 07.1.2.3" Bus2="busbar 08.1.2.3" LineCode="LC-custom_a3df17c7-49e6-4b68-9b37-66fefc3b9e02" Length=1000 Units="ft"
+New "Line.Line_08" Bus1="busbar 08.1.2.3" Bus2="busbar 09.1.2.3" LineCode="LC-custom_fabccefc-17b5-4f07-9d63-d64095bc1743" Length=1000 Units="ft"
+New "Line.Line_09" Bus1="busbar 09.1.2.3" Bus2="busbar 10.1.2.3" LineCode="LC-custom_573acad6-5670-480c-8f58-84b9a5082e03" Length=1000 Units="ft"
+New "Line.Line_10" Bus1="busbar 10.1.2.3" Bus2="busbar 11.1.2.3" LineCode="LC-custom_4ca61110-35a6-4dd9-8e8b-b62f104e0d0c" Length=1000 Units="ft"
+New "Line.Line_11" Bus1="busbar 11.1.2.3" Bus2="busbar 12.1.2.3" LineCode="LC-custom_d69755db-9b5a-4981-91fa-234dff3d0430" Length=1000 Units="ft"
+New "Line.Line_12" Bus1="busbar 12.1.2.3" Bus2="busbar 13.1.2.3" LineCode="LC-custom_7769164c-0ece-4e92-962d-e00c5e399210" Length=1000 Units="ft"
+New "Line.Line_13" Bus1="busbar 13.1.2.3" Bus2="busbar 14.1.2.3" LineCode="LC-custom_7051e6f8-678d-4138-a269-77ae134170e9" Length=1000 Units="ft"
+New "Line.Line_14" Bus1="busbar 14.1.2.3" Bus2="busbar 15.1.2.3" LineCode="LC-custom_4b1e692b-7ccc-4cc2-8a1a-864b3414e809" Length=1000 Units="ft"
+New "Line.Line_15" Bus1="busbar 15.1.2.3" Bus2="busbar 16.1.2.3" LineCode="LC-custom_15b20b39-7ef3-4bbf-910b-1be7eea83e84" Length=1000 Units="ft"
+New "Line.Line_16" Bus1="busbar 16.1.2.3" Bus2="busbar 17.1.2.3" LineCode="LC-custom_73b279ff-b8a2-4b48-80ef-cc63fdb5965d" Length=1000 Units="ft"
+New "Line.Line_17" Bus1="busbar 17.1.2.3" Bus2="busbar 18.1.2.3" LineCode="LC-custom_e9fcc266-7815-4160-90d5-50c827980f5a" Length=1000 Units="ft"
+New "Line.Line_18" Bus1="busbar 02.1.2.3" Bus2="busbar 19.1.2.3" LineCode="LC-custom_36a4581e-c986-4c08-90a3-f36b12b86a92" Length=1000 Units="ft"
+New "Line.Line_19" Bus1="busbar 19.1.2.3" Bus2="busbar 20.1.2.3" LineCode="LC-custom_325b46fe-e4d8-446a-ab23-4eb95e6ccd7b" Length=1000 Units="ft"
+New "Line.Line_20" Bus1="busbar 20.1.2.3" Bus2="busbar 21.1.2.3" LineCode="LC-custom_5a9befcb-34c9-4343-be71-5925df45e6ee" Length=1000 Units="ft"
+New "Line.Line_21" Bus1="busbar 21.1.2.3" Bus2="busbar 22.1.2.3" LineCode="LC-custom_dc0e30d7-fc62-456a-8fa0-ef3f9b54c423" Length=1000 Units="ft"
+New "Line.Line_22" Bus1="busbar 03.1.2.3" Bus2="busbar 23.1.2.3" LineCode="LC-custom_772efff6-504e-4e5e-a569-8db23b3fe4c8" Length=1000 Units="ft"
+New "Line.Line_23" Bus1="busbar 23.1.2.3" Bus2="busbar 24.1.2.3" LineCode="LC-custom_3496c401-7844-4b40-9c0f-26eaebe40ea6" Length=1000 Units="ft"
+New "Line.Line_24" Bus1="busbar 24.1.2.3" Bus2="busbar 25.1.2.3" LineCode="LC-custom_912e4cdb-4b3f-46a6-9bc0-0d86fc9214c0" Length=1000 Units="ft"
+New "Line.Line_25" Bus1="busbar 06.1.2.3" Bus2="busbar 26.1.2.3" LineCode="LC-custom_ccdcc438-7c55-4d0f-87a8-23ebf4d9dad2" Length=1000 Units="ft"
+New "Line.Line_26" Bus1="busbar 26.1.2.3" Bus2="busbar 27.1.2.3" LineCode="LC-custom_1b4e9ff5-4bbf-43cc-9a79-82e34b2f0373" Length=1000 Units="ft"
+New "Line.Line_27" Bus1="busbar 27.1.2.3" Bus2="busbar 28.1.2.3" LineCode="LC-custom_b0e8cfc8-c50a-495a-87c0-ea3e7fbc6945" Length=1000 Units="ft"
+New "Line.Line_28" Bus1="busbar 28.1.2.3" Bus2="busbar 29.1.2.3" LineCode="LC-custom_e7ab859d-1531-4565-90c9-71e438968979" Length=1000 Units="ft"
+New "Line.Line_29" Bus1="busbar 29.1.2.3" Bus2="busbar 30.1.2.3" LineCode="LC-custom_f79128ae-47ba-499a-9c91-aba80070cbcb" Length=1000 Units="ft"
+New "Line.Line_30" Bus1="busbar 30.1.2.3" Bus2="busbar 31.1.2.3" LineCode="LC-custom_9cf3b575-5d36-4145-84fb-feea24a5fbeb" Length=1000 Units="ft"
+New "Line.Line_31" Bus1="busbar 31.1.2.3" Bus2="busbar 32.1.2.3" LineCode="LC-custom_1323a128-059c-4920-b57d-837da5e9854c" Length=1000 Units="ft"
+New "Line.Line_33" Bus1="busbar 21.1.2.3" Bus2="busbar 08.1.2.3" LineCode="LC-custom_98b17665-aedd-4b24-b4e3-7addb497196a" Length=1000 Units="ft"
+New "Line.Line_34" Bus1="busbar 09.1.2.3" Bus2="busbar 15.1.2.3" LineCode="LC-custom_e54c15a7-75a9-4d0a-bd22-335882ebcdf6" Length=1000 Units="ft"
+New "Line.Line_35" Bus1="busbar 12.1.2.3" Bus2="busbar 22.1.2.3" LineCode="LC-custom_61a5ab6c-ab4a-4c31-8531-7c0428a12142" Length=1000 Units="ft"
+New "Line.Line_36" Bus1="busbar 18.1.2.3" Bus2="busbar 33.1.2.3" LineCode="LC-custom_903ee3ec-2b49-4c91-86a6-4f2c1cd46e11" Length=1000 Units="ft"
+New "Line.Line_37" Bus1="busbar 25.1.2.3" Bus2="busbar 29.1.2.3" LineCode="LC-custom_94701586-7ed9-405c-b668-55b5d144ee41" Length=1000 Units="ft"
+
+// Transformers
+New "Transformer.t_01" phases=3 Windings=2 XHL=5.58624195 %LoadLoss=1.36249804
+~ wdg=1 Bus="busbar 32.1.2.3.0" kV=12.66 kVA=1000 Conn="wye"
+~ wdg=2 Bus="busbar 33.1.2.3.0" kV=12.66 kVA=1000 Conn="wye" MinTap=0.9 MaxTap=1.1 NumTaps=32 Tap=1
+
+// Transformer Load Tap Change (LTC) controls
+New "RegControl.ltc-t_01" Transformer="t_01" winding=2 vreg=120 ptratio=60.91 band=3 Bus="busbar 33.1.2.3" enabled = Yes  maxtapchange = 16
+New "Monitor.tapMonitor" Element="Transformer.t_01" terminal=2 mode=2
+// Voltage bases
+Set VoltageBases=[12.66]
+CalcVoltageBases
+
+Set mode="daily"
+Set CaseName="33BusMeshedReg"
+//Set Demand=True
+//Set DIVerbose=True
+//CloseDI
+
+Solve
+
+
+
