@@ -1,0 +1,261 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>getCapacitorInfo</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-11-24"><meta name="DC.source" content="getCapacitorInfo_help.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>getCapacitorInfo</h1><!--introduction--><p>Gets the information for all capacitors in the circuit</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Inputs</a></li><li><a href="#4">Outputs</a></li><li><a href="#5">Example</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre>Capacitors = getCapacitorInfo(DSSCircObj);
+Capacitors = getCapacitorInfo(DSSCircObj, capacitorNames);</pre><h2>Description<a name="2"></a></h2><p>Function to get the information about the capacitors in the circuit and return a structure with the information. If the optional input of capacitorNames is filled, the function returns information for the specified subset of capacitors, excluding the miscellaneous and additional parameters mentioned in the outputs below.</p><h2>Inputs<a name="3"></a></h2><div><ul><li><b><tt>DSSCircObj</tt></b> - link to OpenDSS active circuit and command text (from DSSStartup)</li><li><b><tt>capacitorNames</tt></b> - optional cell array of capacitor names to get information for</li></ul></div><h2>Outputs<a name="4"></a></h2><p><b><tt>Capacitors</tt></b> is a structure with all the parameters for the capacitors in the active circuit.  Fields are:</p><div><ul><li><i>name</i> - The capacitor name.</li><li><i>busName</i> - Name of the associated bus.</li><li><i>numPhases</i> - Number of phases associated with the capacitor bank.</li><li><i>enabled</i> - {1|0} indicates whether this element is enabled in the simulation.</li><li><i>coordinates</i> - Coordinates for the capacitor's bus, obtained from getBusInfo.</li><li><i>distance</i> - Line distance from the capacitor's bus to the substation, obtained from getBusInfo.</li><li><i>current</i> - average phase current</li><li><i>phaseVoltages</i> - Value of voltage magnitudes calculated from the complex voltage returned by OpenDSS. Length is always 3, returning 0 for phases not on the bus</li><li><i>phaseVoltagesPU</i> - Per-unit value of voltage magnitudes calculated from the complex per-unit voltage returned by OpenDSS. Length is always 3, returning 0 for phases not on the bus.</li><li><i>voltage</i>, <i>voltagePU</i>, <i>voltagePhasorPU</i>, <i>phaseVoltages</i>, <i>phaseVoltagePhasors</i>, ... <i>phaseVoltagePhasorsPU</i>, <i>phaseVoltagesLL</i>, <i>phaseVoltagesLLPU</i>, <i>voltageLL</i>, <i>voltageLLPU</i> - voltages and voltage phasors</li><li><i>seqVoltages</i>, <i>cplxVoltages</i>, <i>seqCurrents</i>, <i>cplxSeqCurrents</i> - zero, positive, and negative sequence voltages and currents magnitude or complex phasors</li><li><i>phasePowerReal</i> - 3-element array of the real components of each phase's complex power injected by generator. Phases that are not present will return 0.</li><li><i>phasePowerReactive</i> - 3-element array of the imaginary components of each phase's complex power injected by generator. Phases that are not present will return 0.</li><li><i>powerReal</i> - Total <i>phasePowerReal</i>.</li><li><i>powerReactive</i> - Total <i>phasePowerReactive</i>.</li><li><i>losses</i> - total real and imaginary power losses</li><li><i>phaseLosses</i> - real and imaginary power losses</li><li><i>switching</i> - {1|0} 1 if CapControl lists the capacitor as one of its elements, 0 otherwise.</li><li><i>kvar</i> - Total kvar, if one step, or ARRAY of kvar ratings for each step. Evenly divided among phases.</li><li><i>isDelta</i> - {1|0} 1 is it connected via delta connection, 0 otherwise.</li><li><i>kV</i> - For 2, 3-phase, kV phase-phase. Otherwise specify actual cap rating.</li><li><i>capControl</i> - Name of the CapControl element controlling the capacitor if the capacitor is being controlled.</li><li><i>controlMode</i> - Mode of control if the capacitor is being controlled.</li><li><i>monitoredObj</i>, <i>monitoredTerm</i>, <i>CTratio</i>, <i>PTratio</i>, <i>onSetting</i>, <i>offSetting</i>, <i>Vmax</i>, <i>Vmin</i>, <i>useVoltOverride</i>, <i>delay</i>, <i>delayOff</i>, <i>deadTime</i> - Settings from the CapControl</li></ul></div><h2>Example<a name="5"></a></h2><p>Returns capacitor information in the circuit</p><pre class="codeinput">[DSSCircObj, DSSText, gridpvPath] = DSSStartup;
+DSSText.command = [<span class="string">'Compile "'</span> gridpvPath <span class="string">'ExampleCircuit\master_Ckt24.dss"'</span>];
+DSSText.command = <span class="string">'solve'</span>;
+Capacitors = getCapacitorInfo(DSSCircObj) <span class="comment">%Get information for all capacitors</span>
+Capacitors = getCapacitorInfo(DSSCircObj,DSSCircObj.ActiveCircuit.Capacitors.AllNames) <span class="comment">%Get information for all capacitors</span>
+Capacitors = getCapacitorInfo(DSSCircObj, {<span class="string">'cap_g2101ae7400'</span>}) <span class="comment">%Get information for one capacitor</span>
+Capacitors = getCapacitorInfo(DSSCircObj, [{<span class="string">'cap_g2100pl6500'</span>};{<span class="string">'cap_g2100fk7800'</span>}]); <span class="comment">%Get information for two capacitors</span>
+<span class="comment">%</span>
+</pre><pre class="codeoutput">
+Capacitors = 
+
+3x1 struct array with fields:
+
+    name
+    busName
+    numPhases
+    enabled
+    coordinates
+    distance
+    current
+    voltage
+    voltagePU
+    voltagePhasorPU
+    phaseVoltages
+    phaseVoltagesPU
+    phaseVoltagePhasors
+    phaseVoltagePhasorsPU
+    phaseVoltagesLL
+    phaseVoltagesLLPU
+    voltageLL
+    voltageLLPU
+    seqVoltages
+    cplxSeqVoltages
+    seqCurrents
+    cplxSeqCurrents
+    phasePowerReal
+    phasePowerReactive
+    powerReal
+    powerReactive
+    losses
+    phaseLosses
+    switching
+    kvar
+    isDelta
+    kV
+
+
+Capacitors = 
+
+3x1 struct array with fields:
+
+    name
+    busName
+    numPhases
+    enabled
+    coordinates
+    distance
+    current
+    voltage
+    voltagePU
+    voltagePhasorPU
+    phaseVoltages
+    phaseVoltagesPU
+    phaseVoltagePhasors
+    phaseVoltagePhasorsPU
+    phaseVoltagesLL
+    phaseVoltagesLLPU
+    voltageLL
+    voltageLLPU
+    seqVoltages
+    cplxSeqVoltages
+    seqCurrents
+    cplxSeqCurrents
+    phasePowerReal
+    phasePowerReactive
+    powerReal
+    powerReactive
+    losses
+    phaseLosses
+    switching
+    kvar
+    isDelta
+    kV
+
+
+Capacitors = 
+
+                     name: 'cap_g2101ae7400'
+                  busName: 'n284062'
+                numPhases: 3
+                  enabled: 1
+              coordinates: [31.6512 -80.9620]
+                 distance: 5.4491
+                  current: 20.4556
+                  voltage: 2.0289e+04
+                voltagePU: 1.0186
+          voltagePhasorPU: -0.0021 + 0.0017i
+            phaseVoltages: [2.0204e+04 2.0281e+04 2.0383e+04]
+          phaseVoltagesPU: [1.0143 1.0182 1.0233]
+      phaseVoltagePhasors: [1x3 double]
+    phaseVoltagePhasorsPU: [1x3 double]
+          phaseVoltagesLL: [3.5026e+04 3.5198e+04 3.5203e+04]
+        phaseVoltagesLLPU: [1.0153 1.0202 1.0204]
+                voltageLL: 3.5142e+04
+              voltageLLPU: 1.0186
+              seqVoltages: [53.4248 2.0289e+04 66.8601 0 0 0]
+          cplxSeqVoltages: [1x12 double]
+              seqCurrents: [0.0539 20.4556 0.0674 0.0539 20.4556 0.0674]
+          cplxSeqCurrents: [1x12 double]
+           phasePowerReal: [0 0 -7.2760e-15]
+       phasePowerReactive: [-411.5546 -414.6802 -418.8809]
+                powerReal: -7.2760e-15
+            powerReactive: -1.2451e+03
+                   losses: -7.2760e-15 - 1.2451e+03i
+              phaseLosses: [1x3 double]
+                switching: 0
+                     kvar: 1200
+                  isDelta: 0
+                       kV: 34.5000
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% getCapacitorInfo
+% Gets the information for all capacitors in the circuit
+%
+%% Syntax
+%  Capacitors = getCapacitorInfo(DSSCircObj);
+%  Capacitors = getCapacitorInfo(DSSCircObj, capacitorNames);
+%
+%% Description
+% Function to get the information about the capacitors in the circuit and
+% return a structure with the information. If the optional input of
+% capacitorNames is filled, the function returns information for the specified
+% subset of capacitors, excluding the miscellaneous and additional 
+% parameters mentioned in the outputs below.
+%
+%% Inputs
+% * *|DSSCircObj|* - link to OpenDSS active circuit and command text (from DSSStartup)
+% * *|capacitorNames|* - optional cell array of capacitor names to get information for
+%
+%% Outputs
+% *|Capacitors|* is a structure with all the parameters for the
+% capacitors in the active circuit.  Fields are:
+%
+% * _name_ - The capacitor name.
+% * _busName_ - Name of the associated bus.
+% * _numPhases_ - Number of phases associated with the capacitor bank.
+% * _enabled_ - {1|0} indicates whether this element is enabled in the simulation.
+% * _coordinates_ - Coordinates for the capacitor's bus, obtained from getBusInfo.
+% * _distance_ - Line distance from the capacitor's bus to the substation, obtained from getBusInfo.
+% * _current_ - average phase current
+% * _phaseVoltages_ - Value of voltage magnitudes calculated from
+% the complex voltage returned by OpenDSS. Length is always 3,
+% returning 0 for phases not on the bus
+% * _phaseVoltagesPU_ - Per-unit value of voltage magnitudes calculated from
+% the complex per-unit voltage returned by OpenDSS. Length is always 3,
+% returning 0 for phases not on the bus.
+% * _voltage_, _voltagePU_, _voltagePhasorPU_, _phaseVoltages_, _phaseVoltagePhasors_, ... 
+% _phaseVoltagePhasorsPU_, _phaseVoltagesLL_, _phaseVoltagesLLPU_, _voltageLL_, _voltageLLPU_ - voltages and voltage phasors
+% * _seqVoltages_, _cplxVoltages_, _seqCurrents_, _cplxSeqCurrents_ - zero, positive, and negative sequence voltages and currents magnitude or complex phasors
+% * _phasePowerReal_ - 3-element array of the real components of each
+% phase's complex power injected by generator. Phases that are not present will return 0.
+% * _phasePowerReactive_ - 3-element array of the imaginary components of each
+% phase's complex power injected by generator. Phases that are not present will return 0.
+% * _powerReal_ - Total _phasePowerReal_.
+% * _powerReactive_ - Total _phasePowerReactive_.
+% * _losses_ - total real and imaginary power losses
+% * _phaseLosses_ - real and imaginary power losses
+% * _switching_ - {1|0} 1 if CapControl lists the capacitor as one of its elements, 0 otherwise.
+% * _kvar_ - Total kvar, if one step, or ARRAY of kvar ratings for each step. Evenly divided among phases.
+% * _isDelta_ - {1|0} 1 is it connected via delta connection, 0 otherwise.
+% * _kV_ - For 2, 3-phase, kV phase-phase. Otherwise specify actual cap rating.
+% * _capControl_ - Name of the CapControl element controlling the capacitor if the capacitor is being controlled.
+% * _controlMode_ - Mode of control if the capacitor is being controlled.
+% * _monitoredObj_, _monitoredTerm_, _CTratio_, _PTratio_, _onSetting_, _offSetting_, _Vmax_, _Vmin_,
+% _useVoltOverride_, _delay_, _delayOff_, _deadTime_ - Settings from the CapControl
+%
+%%% Example
+% Returns capacitor information in the circuit
+%
+[DSSCircObj, DSSText, gridpvPath] = DSSStartup;
+DSSText.command = ['Compile "' gridpvPath 'ExampleCircuit\master_Ckt24.dss"'];
+DSSText.command = 'solve';
+Capacitors = getCapacitorInfo(DSSCircObj) %Get information for all capacitors
+Capacitors = getCapacitorInfo(DSSCircObj,DSSCircObj.ActiveCircuit.Capacitors.AllNames) %Get information for all capacitors
+Capacitors = getCapacitorInfo(DSSCircObj, {'cap_g2101ae7400'}) %Get information for one capacitor
+Capacitors = getCapacitorInfo(DSSCircObj, [{'cap_g2100pl6500'};{'cap_g2100fk7800'}]); %Get information for two capacitors
+%
+
+
+##### SOURCE END #####
+--></body></html>

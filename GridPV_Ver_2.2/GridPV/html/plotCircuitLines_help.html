@@ -1,0 +1,193 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>plotCircuitLines</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-11-24"><meta name="DC.source" content="plotCircuitLines_help.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>plotCircuitLines</h1><!--introduction--><p>Plots the feeder circuit diagram</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Inputs</a></li><li><a href="#4">Outputs</a></li><li><a href="#5">Notes</a></li><li><a href="#6">Example</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre>plotCircuitLines(DSSCircObj);
+plotCircuitLines(DSSCircObj, _'PropertyName'_ ,PropertyValue);
+Handles = plotCircuitLines(DSSCircObj, _'PropertyName'_ ,PropertyValue);</pre><h2>Description<a name="2"></a></h2><p>Function to plot the feeder circuit diagram.  The coloring and line thickness plotting styles can be customized by the user through the function property inputs.  If no properties are selected, the plotCircuitLinesOptions GUI window is displayed to assist the user is selecting plotting options.  Clicking on objects in the figure will display the name of the object, and right clicking will give a menu for viewing properties of the object.</p><h2>Inputs<a name="3"></a></h2><div><ul><li><b><tt>DSSCircObj</tt></b> - link to OpenDSS active circuit and command text (from DSSStartup)</li><li><b><tt>Properties</tt></b> - optional properties as one or more name-value pairs in any order</li><li>-- <b><tt>'Coloring'</tt></b> - Defines how the circuit lines are colored in the figure.</li><li>------ <tt>ColorSpec</tt> - three-element RGB vector specifying the line color</li><li>------ <tt>'numPhases'</tt> - black for 3-phase lines and a light gray for 1 or 2 phase lines. This is the default</li><li>------ <tt>'perPhase'</tt> - colors each phase (or combination of phases) a different color in the figure</li><li>------ <tt>'energyMeter'</tt> - colors each energy meter zone a different color in the figure</li><li>------ <tt>'voltage120'</tt> - contours the line colors according to the voltage on a 120V base</li><li>------ <tt>'voltagePU'</tt> - contours the line colors according to the per unit voltage</li><li>------ <tt>'voltage'</tt> - contours the line colors according to the voltage (kV)</li><li>------ <tt>'voltage120LL'</tt> - contours the line colors according to the line-to-line voltage on a 120V base</li><li>------ <tt>'voltagePULL'</tt> - contours the line colors according to the line-to-line per unit voltage</li><li>------ <tt>'voltageLL'</tt> - contours the line colors according to the line-to-line voltage (kV)</li><li>------ <tt>'lineLoading'</tt> - contours the line colors according to the line loading (current/line rating)</li><li>------ <tt>'realLosses'</tt> - contours the line colors according to the real power line losses (kW/km)</li><li>------ <tt>'reactiveLosses'</tt> - contours the line colors according to the reactive power line losses (kVAR/km)</li><li>------ <tt>'distance'</tt> - contours the line colors according to the distance from the substation</li><li>------ <tt>'unbalance'</tt> - contours the line colors according to the power (kVA) unbalance between phases</li><li>------ <tt>'voltageAngle'</tt> - contours the line colors according to the angle of the bus voltage phasor</li><li>------ <tt>'powerFactor'</tt> - contours the line colors according to the power factor of the power flow</li><li>------ <tt>'powerFlowDirection'</tt> - contours the line colors according to the line power flow (kW) with separate colors for upstream and downstream flow</li><li>------ <tt>'impedance'</tt> - contours the line colors according to the positive-sequence short-circuit impedance magnitude</li><li>------ <tt>'resistance'</tt> - contours the line colors according to the positive-sequence short-circuit resistance</li><li>------ <tt>'reactance'</tt> - contours the line colors according to the positive-sequence short-circuit reactance</li><li>------ <tt>'faultCurrent3P'</tt> - contours the line colors according to the fault current for a 3-phase fault</li><li>------ <tt>'faultCurrent1P'</tt> - contours the line colors according to the fault current for a 1-phase fault</li><li>------ <tt>'faultCurrentLL'</tt> - contours the line colors according to the fault current for a Line-to-Line fault</li><li>-- <b><tt>'ContourScale'</tt></b> - Defines the minimum and maximum value for contouring or auto scaling <tt>{'auto'} | [0 5]</tt></li><li>-- <b><tt>'Thickness'</tt></b> - Defines how the thickness of the circuit lines is displayed.  <tt>{'numPhases'} | 'current' | 'lineRating' | 0 - 10</tt></li><li>------ <tt>0 - 10</tt> - numeric value for the fixed line width</li><li>------ <tt>'numPhases'</tt> - thicker lines for 3-phase power lines</li><li>------ <tt>'current'</tt> - thickness is linearly related to the current flowing through the lines relative to the maximum current in any line</li><li>------ <tt>'lineRating'</tt> - thickness is linearly related to the current rating of the line relative to the maximum line rating</li><li>-- <b><tt>'SubstationMarker'</tt></b> - Property for if the substation should be marked <tt>{'on'} | 'off'</tt></li><li>-- <b><tt>'SubEquipmentMarker'</tt></b> - Property for if equipment (such as loads, transformers, etc.) in the substation (using distance) whose marker is turned on should should be marked <tt>'on' | {'off'}</tt></li><li>-- <b><tt>'PVMarker'</tt></b> - Property for if the PV PCC should be marked (if it exists) <tt>{'on'} | 'off'</tt></li><li>-- <b><tt>'GeneratorMarker'</tt></b> - Property for if generators should be marked (if it exists) <tt>{'on'} | 'off'</tt></li><li>-- <b><tt>'LoadMarker'</tt></b> - Property for if loads should be marked <tt>{'on'} | 'off'</tt></li><li>-- <b><tt>'RegulatorMarker'</tt></b> - Property for if controlled transfomers such as regulators (LTC and VREG) should be marked <tt>{'on'} | 'off'</tt></li><li>-- <b><tt>'MVTransformerMarker'</tt></b> - Property for if medium-voltage transfomers (&gt;1000V) should be marked <tt>'on' | {'off'}</tt></li><li>-- <b><tt>'BoosterMarker'</tt></b> - Property for if boosters transformers (uncontrolled NLTC) should be marked <tt>{'on'} | 'off'</tt></li><li>-- <b><tt>'ServiceTransformerMarker'</tt></b> - Property for if service transfomers (&lt;1000V) should be marked <tt>'on' | {'off'}</tt></li><li>-- <b><tt>'CapacitorMarker'</tt></b> - Property for if capacitors should be marked <tt>{'on'} | 'off'</tt></li><li>-- <b><tt>'CapacitorLabel'</tt></b> - Property for if capacitors should be labeled with textbox/arrow for capacitor size <tt>'on' | {'off'}</tt></li><li>-- <b><tt>'EndOfFeederMarker'</tt></b> - Property for if the end of the feeder by distance (3-phase section) should be marked <tt>'on' | {'off'}</tt></li><li>-- <b><tt>'EndOfFeederLabel'</tt></b> - Property for if the end of the feeder should be labeled with textbox/arrow for capacitor size <tt>'on' | {'off'}</tt></li><li>-- <b><tt>'CustomMarker'</tt></b> - Property for marking a custom bus by the user specifying a bus name or a cell array of bus names <tt>{'off'} | busNameString</tt></li><li>-- <b><tt>'CustomLegend'</tt></b> - Text to place in the legend describing the custom bus specified in CustomMarker</li><li>-- <b><tt>'EnergyMeter'</tt></b> - Name or cell array of names of the energy meter zones to plot <tt>{'all'} | energyMeterName</tt></li><li>-- <b><tt>'NumPhases'</tt></b> - Property for if only lines with the specified number of phases should be plotted <tt>[1,2,3] | 1 | [2,3] | [1,2]</tt></li><li>-- <b><tt>'PhasesToPlot'</tt></b> - Property for which phases to plot (A,B,C). True/False values for each phase <tt>[1,1,1] | [1,0,0]</tt></li><li>-- <b><tt>'BusName'</tt></b> - Property for the name of the bus (string) that the circuit should be plotted to.  Only the direct line between the bus and the substation will be plotted, unless all buses are selected. <tt>{'all'} | busName</tt></li><li>-- <b><tt>'Downstream'</tt></b> - If a BusName is given, all buses in the electrical path to the substation (upstream) will be plotted, and if this property is on, all buses in the electrical path downstream of BusName will be plotted too <tt>'on' | {'off'}</tt></li><li>-- <b><tt>'MappingBackground'</tt></b> - Property for if the satellite image should be displayed in the background. Note, this only works if the coordinates are in latitude/longitude values or if initCoordConversion was performed. <tt>{'none'} | 'hybrid' | 'satellite' | 'roadmap' | 'terrain'</tt></li><li>-- <b><tt>'Lines'</tt></b> - Structure of the circuit lines from getLineInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.</li><li>-- <b><tt>'PV'</tt></b> - Structure of the PV from getPVInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.</li><li>-- <b><tt>'Generators'</tt></b> - Structure of the Generators from getGeneratorInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.</li><li>-- <b><tt>'Transformers'</tt></b> - Structure of the circuit transformers from getTransformerInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.</li><li>-- <b><tt>'Capacitors'</tt></b> - Structure of the circuit capacitors from getCapacitorInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.</li><li>-- <b><tt>'Loads'</tt></b> - Structure of the circuit loads from getLoadInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.</li></ul></div><h2>Outputs<a name="4"></a></h2><div><ul><li><b><tt>Handles</tt></b> - structure of handles for each type of object plotted in the figure</li><li>A figure of the circuit is displayed in the current axes based on the option inputs</li></ul></div><h2>Notes<a name="5"></a></h2><p>For the right-click visualizations, the AllowForms field of DSSCircObj must be set to 1, which is the default value. Currently, OpenDSS 7.6.3 (the current version as of this writing) does not allow for setting the AllowForms field back to 1 after setting it to 0.</p><h2>Example<a name="6"></a></h2><p>Examples of several different circuit plots that can be created</p><pre class="codeinput">[DSSCircObj, DSSText, gridpvPath] = DSSStartup;
+DSSText.command = [<span class="string">'Compile "'</span> gridpvPath <span class="string">'ExampleCircuit\master_Ckt24.dss"'</span>];
+DSSText.command = <span class="string">'solve'</span>;
+figure; plotCircuitLines(DSSCircObj,<span class="string">'CapacitorMarker'</span>,<span class="string">'on'</span>,<span class="string">'LoadMarker'</span>,<span class="string">'on'</span>)
+figure; plotCircuitLines(DSSCircObj,<span class="string">'Coloring'</span>,<span class="string">'perPhase'</span>,<span class="string">'Thickness'</span>,3,<span class="string">'MappingBackground'</span>,<span class="string">'hybrid'</span>)
+figure; plotCircuitLines(DSSCircObj,<span class="string">'Coloring'</span>,<span class="string">'voltagePU'</span>,<span class="string">'EndOfFeederMarker'</span>,<span class="string">'on'</span>)
+figure; plotCircuitLines(DSSCircObj,<span class="string">'Coloring'</span>,<span class="string">'resistance'</span>)
+figure; plotCircuitLines(DSSCircObj,<span class="string">'Coloring'</span>,<span class="string">'faultCurrent1P'</span>)
+figure; plotCircuitLines(DSSCircObj,<span class="string">'Coloring'</span>,<span class="string">'lineLoading'</span>)
+DSSText.command = [<span class="string">'Compile "'</span> gridpvPath <span class="string">'ExampleCircuit\Ckt24_PV_Central_7_5.dss"'</span>];
+DSSText.command = <span class="string">'solve'</span>;
+figure; plotCircuitLines(DSSCircObj,<span class="string">'Coloring'</span>,<span class="string">'voltage120'</span>)
+<span class="comment">%</span>
+</pre><img vspace="5" hspace="5" src="plotCircuitLines_help_01.png" alt=""> <img vspace="5" hspace="5" src="plotCircuitLines_help_02.png" alt=""> <img vspace="5" hspace="5" src="plotCircuitLines_help_03.png" alt=""> <img vspace="5" hspace="5" src="plotCircuitLines_help_04.png" alt=""> <img vspace="5" hspace="5" src="plotCircuitLines_help_05.png" alt=""> <img vspace="5" hspace="5" src="plotCircuitLines_help_06.png" alt=""> <img vspace="5" hspace="5" src="plotCircuitLines_help_07.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% plotCircuitLines
+% Plots the feeder circuit diagram
+%
+%% Syntax
+%  plotCircuitLines(DSSCircObj);
+%  plotCircuitLines(DSSCircObj, _'PropertyName'_ ,PropertyValue);
+%  Handles = plotCircuitLines(DSSCircObj, _'PropertyName'_ ,PropertyValue);
+%
+%% Description
+% Function to plot the feeder circuit diagram.  The coloring and line
+% thickness plotting styles can be customized by the user through the function
+% property inputs.  If no properties are selected, the plotCircuitLinesOptions 
+% GUI window is displayed to assist the user is selecting plotting options.  Clicking on objects in
+% the figure will display the name of the object, and right clicking will give a menu for viewing
+% properties of the object.
+%
+%% Inputs
+% * *|DSSCircObj|* - link to OpenDSS active circuit and command text (from DSSStartup)
+% * *|Properties|* - optional properties as one or more name-value pairs in any order
+% * REPLACE_WITH_DASH_DASH *|'Coloring'|* - Defines how the circuit lines are colored in the figure.
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |ColorSpec| - three-element RGB vector specifying the line color
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'numPhases'| - black for 3-phase lines and a light gray for 1 or 2 phase lines. This is the default
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'perPhase'| - colors each phase (or combination of phases) a different color in the figure
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'energyMeter'| - colors each energy meter zone a different color in the figure
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'voltage120'| - contours the line colors according to the voltage on a 120V base
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'voltagePU'| - contours the line colors according to the per unit voltage
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'voltage'| - contours the line colors according to the voltage (kV)
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'voltage120LL'| - contours the line colors according to the line-to-line voltage on a 120V base
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'voltagePULL'| - contours the line colors according to the line-to-line per unit voltage
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'voltageLL'| - contours the line colors according to the line-to-line voltage (kV)
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'lineLoading'| - contours the line colors according to the line loading (current/line rating)
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'realLosses'| - contours the line colors according to the real power line losses (kW/km)
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'reactiveLosses'| - contours the line colors according to the reactive power line losses (kVAR/km)
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'distance'| - contours the line colors according to the distance from the substation
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'unbalance'| - contours the line colors according to the power (kVA) unbalance between phases
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'voltageAngle'| - contours the line colors according to the angle of the bus voltage phasor
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'powerFactor'| - contours the line colors according to the power factor of the power flow
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'powerFlowDirection'| - contours the line colors according to the line power flow (kW) with separate colors for upstream and downstream flow
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'impedance'| - contours the line colors according to the positive-sequence short-circuit impedance magnitude
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'resistance'| - contours the line colors according to the positive-sequence short-circuit resistance
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'reactance'| - contours the line colors according to the positive-sequence short-circuit reactance
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'faultCurrent3P'| - contours the line colors according to the fault current for a 3-phase fault
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'faultCurrent1P'| - contours the line colors according to the fault current for a 1-phase fault
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'faultCurrentLL'| - contours the line colors according to the fault current for a Line-to-Line fault
+% * REPLACE_WITH_DASH_DASH *|'ContourScale'|* - Defines the minimum and maximum value for contouring or auto scaling |{'auto'} | [0 5]|
+% * REPLACE_WITH_DASH_DASH *|'Thickness'|* - Defines how the thickness of the circuit lines is displayed.  |{'numPhases'} | 'current' | 'lineRating' | 0 - 10|
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |0 - 10| - numeric value for the fixed line width
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'numPhases'| - thicker lines for 3-phase power lines
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'current'| - thickness is linearly related to the current flowing through the lines relative to the maximum current in any line
+% * REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH |'lineRating'| - thickness is linearly related to the current rating of the line relative to the maximum line rating
+% * REPLACE_WITH_DASH_DASH *|'SubstationMarker'|* - Property for if the substation should be marked |{'on'} | 'off'|
+% * REPLACE_WITH_DASH_DASH *|'SubEquipmentMarker'|* - Property for if equipment (such as loads, transformers, etc.) in the substation (using distance) whose marker is turned on should should be marked |'on' | {'off'}|
+% * REPLACE_WITH_DASH_DASH *|'PVMarker'|* - Property for if the PV PCC should be marked (if it exists) |{'on'} | 'off'|
+% * REPLACE_WITH_DASH_DASH *|'GeneratorMarker'|* - Property for if generators should be marked (if it exists) |{'on'} | 'off'|
+% * REPLACE_WITH_DASH_DASH *|'LoadMarker'|* - Property for if loads should be marked |{'on'} | 'off'|
+% * REPLACE_WITH_DASH_DASH *|'RegulatorMarker'|* - Property for if controlled transfomers such as regulators (LTC and VREG) should be marked |{'on'} | 'off'|
+% * REPLACE_WITH_DASH_DASH *|'MVTransformerMarker'|* - Property for if medium-voltage transfomers (>1000V) should be marked |'on' | {'off'}|
+% * REPLACE_WITH_DASH_DASH *|'BoosterMarker'|* - Property for if boosters transformers (uncontrolled NLTC) should be marked |{'on'} | 'off'|
+% * REPLACE_WITH_DASH_DASH *|'ServiceTransformerMarker'|* - Property for if service transfomers (<1000V) should be marked |'on' | {'off'}|
+% * REPLACE_WITH_DASH_DASH *|'CapacitorMarker'|* - Property for if capacitors should be marked |{'on'} | 'off'|
+% * REPLACE_WITH_DASH_DASH *|'CapacitorLabel'|* - Property for if capacitors should be labeled with textbox/arrow for capacitor size |'on' | {'off'}|
+% * REPLACE_WITH_DASH_DASH *|'EndOfFeederMarker'|* - Property for if the end of the feeder by distance (3-phase section) should be marked |'on' | {'off'}|
+% * REPLACE_WITH_DASH_DASH *|'EndOfFeederLabel'|* - Property for if the end of the feeder should be labeled with textbox/arrow for capacitor size |'on' | {'off'}|
+% * REPLACE_WITH_DASH_DASH *|'CustomMarker'|* - Property for marking a custom bus by the user specifying a bus name or a cell array of bus names |{'off'} | busNameString|
+% * REPLACE_WITH_DASH_DASH *|'CustomLegend'|* - Text to place in the legend describing the custom bus specified in CustomMarker
+% * REPLACE_WITH_DASH_DASH *|'EnergyMeter'|* - Name or cell array of names of the energy meter zones to plot |{'all'} | energyMeterName|
+% * REPLACE_WITH_DASH_DASH *|'NumPhases'|* - Property for if only lines with the specified number of phases should be plotted |[1,2,3] | 1 | [2,3] | [1,2]|
+% * REPLACE_WITH_DASH_DASH *|'PhasesToPlot'|* - Property for which phases to plot (A,B,C). True/False values for each phase |[1,1,1] | [1,0,0]|
+% * REPLACE_WITH_DASH_DASH *|'BusName'|* - Property for the name of the bus (string) that the circuit should be plotted to.  Only the direct line between the bus and the substation will be plotted, unless all buses are selected. |{'all'} | busName|
+% * REPLACE_WITH_DASH_DASH *|'Downstream'|* - If a BusName is given, all buses in the electrical path to the substation (upstream) will be plotted, and if this property is on, all buses in the electrical path downstream of BusName will be plotted too |'on' | {'off'}|
+% * REPLACE_WITH_DASH_DASH *|'MappingBackground'|* - Property for if the satellite image should be displayed in the background. Note, this only works if the coordinates are in latitude/longitude values or if initCoordConversion was performed. |{'none'} | 'hybrid' | 'satellite' | 'roadmap' | 'terrain'|
+% * REPLACE_WITH_DASH_DASH *|'Lines'|* - Structure of the circuit lines from getLineInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.
+% * REPLACE_WITH_DASH_DASH *|'PV'|* - Structure of the PV from getPVInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.
+% * REPLACE_WITH_DASH_DASH *|'Generators'|* - Structure of the Generators from getGeneratorInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.
+% * REPLACE_WITH_DASH_DASH *|'Transformers'|* - Structure of the circuit transformers from getTransformerInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.
+% * REPLACE_WITH_DASH_DASH *|'Capacitors'|* - Structure of the circuit capacitors from getCapacitorInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.
+% * REPLACE_WITH_DASH_DASH *|'Loads'|* - Structure of the circuit loads from getLoadInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.
+%
+%% Outputs
+% * *|Handles|* - structure of handles for each type of object plotted in the figure
+% * A figure of the circuit is displayed in the current axes based on the option inputs
+%
+%% Notes
+% For the right-click visualizations, the AllowForms
+% field of DSSCircObj must be set to 1, which is the default value.
+% Currently, OpenDSS 7.6.3 (the current version as of this writing) does not
+% allow for setting the AllowForms field back to 1 after setting it to 0.
+%
+%%% Example
+% Examples of several different circuit plots that can be created
+%
+[DSSCircObj, DSSText, gridpvPath] = DSSStartup;
+DSSText.command = ['Compile "' gridpvPath 'ExampleCircuit\master_Ckt24.dss"'];
+DSSText.command = 'solve';
+figure; plotCircuitLines(DSSCircObj,'CapacitorMarker','on','LoadMarker','on')
+figure; plotCircuitLines(DSSCircObj,'Coloring','perPhase','Thickness',3,'MappingBackground','hybrid')
+figure; plotCircuitLines(DSSCircObj,'Coloring','voltagePU','EndOfFeederMarker','on')
+figure; plotCircuitLines(DSSCircObj,'Coloring','resistance')
+figure; plotCircuitLines(DSSCircObj,'Coloring','faultCurrent1P')
+figure; plotCircuitLines(DSSCircObj,'Coloring','lineLoading')
+DSSText.command = ['Compile "' gridpvPath 'ExampleCircuit\Ckt24_PV_Central_7_5.dss"'];
+DSSText.command = 'solve';
+figure; plotCircuitLines(DSSCircObj,'Coloring','voltage120')
+%
+
+
+##### SOURCE END #####
+--></body></html>

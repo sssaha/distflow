@@ -1,0 +1,223 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>getPVInfo</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-11-24"><meta name="DC.source" content="getPVInfo_help.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>getPVInfo</h1><!--introduction--><p>Gets the information for all PV plants in the circuit</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Inputs</a></li><li><a href="#4">Outputs</a></li><li><a href="#5">Example</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre>PV = getPVInfo(DSSCircObj);
+PV = getPVInfo(DSSCircObj, pvNames);</pre><h2>Description<a name="2"></a></h2><p>Function to get the information about the PV plants in the circuit and return a structure with the information. If the optional input of pvNames is filled, the function returns information for the specified subset of PV installations, excluding the miscellaneous parameters mentioned in the outputs below.</p><h2>Inputs<a name="3"></a></h2><div><ul><li><b><tt>DSSCircObj</tt></b> - link to OpenDSS active circuit and command text (from DSSStartup)</li><li><b><tt>pvNames</tt></b> - optional cell array of PV names to get information for</li></ul></div><h2>Outputs<a name="4"></a></h2><p><b><tt>PV</tt></b> is a structure with all the parameters for the PV plants in the active circuit.  Fields are:</p><div><ul><li><i>name</i> - Name of the PV source.</li><li><i>numPhases</i> - Number of phases associated with the PV.</li><li><i>busName</i> - Name of the associated bus.</li><li><i>enabled</i> - {1|0} indicates whether this element is enabled in the simulation.</li><li><i>current</i> - average phase current output</li><li><i>coordinates</i> - Coordinates for the PV bus</li><li><i>distance</i> - Line distance from the PV bus to the substation, obtained from getBusInfo.</li><li><i>phaseVoltages</i> - Value of voltage magnitudes calculated from the complex voltage returned by OpenDSS. Length is always 3, returning 0 for phases not on the bus</li><li><i>phaseVoltagesPU</i> - Per-unit value of voltage magnitudes calculated from the complex per-unit voltage returned by OpenDSS. Length is always 3, returning 0 for phases not on the bus.</li><li><i>voltage</i>, <i>voltagePU</i>, <i>voltagePhasorPU</i>, <i>phaseVoltages</i>, <i>phaseVoltagePhasors</i>, ... <i>phaseVoltagePhasorsPU</i>, <i>phaseVoltagesLL</i>, <i>phaseVoltagesLLPU</i>, <i>voltageLL</i>, <i>voltageLLPU</i> - voltages and voltage phasors</li><li><i>seqVoltages</i>, <i>cplxVoltages</i>, <i>seqCurrents</i>, <i>cplxSeqCurrents</i> - zero, positive, and negative sequence voltages and currents magnitude or complex phasors</li><li><i>phasePowerReal</i> - 3-element array of the real components of each phase's complex power injected by generator. Phases that are not present will return 0.</li><li><i>phasePowerReactive</i> - 3-element array of the imaginary components of each phase's complex power injected by generator. Phases that are not present will return 0.</li><li><i>powerReal</i> - Total <i>phasePowerReal</i>.</li><li><i>powerReactive</i> - Total <i>phasePowerReactive</i>.</li><li><i>losses</i> - total real and imaginary power losses</li><li><i>phaseLosses</i> - real and imaginary power losses</li><li><i>kW</i>, <i>kvar</i>, <i>kva</i> - Rated power of the PV</li><li><i>kV</i> - Rated voltage.</li><li><i>PF</i> - Rated power factor of the PV.</li><li><i>pmpp</i> - DC power rating of the PV system.</li></ul></div><h2>Example<a name="5"></a></h2><p>Returns PV information in the circuit</p><pre class="codeinput">[DSSCircObj, DSSText, gridpvPath] = DSSStartup;
+DSSText.command = [<span class="string">'Compile "'</span> gridpvPath <span class="string">'ExampleCircuit\master_Ckt24.dss"'</span>];
+DSSText.command = [<span class="string">'Compile "'</span> gridpvPath <span class="string">'ExampleCircuit\Ckt24_PV_Distributed_7_5.dss"'</span>];
+DSSText.command = <span class="string">'solve'</span>;
+PV = getPVInfo(DSSCircObj) <span class="comment">%Get information for all PV</span>
+PV = getPVInfo(DSSCircObj, {<span class="string">'PV05410_g2100nj9400'</span>}) <span class="comment">%Get information for one PV</span>
+PV = getPVInfo(DSSCircObj, [{<span class="string">'PV05410_g2100nj9400'</span>};{<span class="string">'PV05410_g2100sn7200'</span>}]); <span class="comment">%Get information for two PV</span>
+<span class="comment">%</span>
+</pre><pre class="codeoutput">
+PV = 
+
+109x1 struct array with fields:
+
+    name
+    numPhases
+    busName
+    enabled
+    current
+    coordinates
+    distance
+    voltage
+    voltagePU
+    voltagePhasorPU
+    phaseVoltages
+    phaseVoltagesPU
+    phaseVoltagePhasors
+    phaseVoltagePhasorsPU
+    phaseVoltagesLL
+    phaseVoltagesLLPU
+    voltageLL
+    voltageLLPU
+    phasePowerReal
+    phasePowerReactive
+    powerReal
+    powerReactive
+    losses
+    phaseLosses
+    seqVoltages
+    cplxSeqVoltages
+    seqCurrents
+    cplxSeqCurrents
+    seqPowers
+    kV
+    kVA
+    kVAR
+    pf
+    pmpp
+
+
+PV = 
+
+                     name: 'PV05410_g2100nj9400'
+                numPhases: 3
+                  busName: 'g2100nj9400_n300465_sec.1.2.3'
+                  enabled: 1
+                  current: 516.7991
+              coordinates: [31.6264 -80.9163]
+                 distance: 5.6327
+                  voltage: 283.0339
+                voltagePU: 1.0213
+          voltagePhasorPU: -0.0016 + 0.0040i
+            phaseVoltages: [282.1206 282.6982 284.2828]
+          phaseVoltagesPU: [1.0180 1.0201 1.0258]
+      phaseVoltagePhasors: [1x3 double]
+    phaseVoltagePhasorsPU: [1x3 double]
+          phaseVoltagesLL: [489.8906 490.0204 490.7701]
+        phaseVoltagesLLPU: [1.0206 1.0209 1.0224]
+                voltageLL: 490.2270
+              voltageLLPU: 1.0213
+           phasePowerReal: [-146.2704 -146.2702 -146.2699]
+       phasePowerReactive: [-0.0034 -0.0023 -0.0021]
+                powerReal: -438.8104
+            powerReactive: -0.0078
+                   losses: -4.3881e+02 - 7.7827e-03i
+              phaseLosses: [1x3 double]
+              seqVoltages: [1.2047 283.0326 0.3166]
+          cplxSeqVoltages: [-0.4506 1.1173 226.2340 -170.0753 -0.0808 -0.3061]
+              seqCurrents: [0.5703 516.7968 2.1995]
+          cplxSeqCurrents: [0.4884 0.2945 -413.0784 310.5563 -2.1881 0.2242]
+                seqPowers: [1x6 double]
+                       kV: 0.4800
+                      kVA: 482.7000
+                     kVAR: 0
+                       pf: 1
+                     pmpp: 438.8100
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% getPVInfo
+% Gets the information for all PV plants in the circuit
+%
+%% Syntax
+%  PV = getPVInfo(DSSCircObj);
+%  PV = getPVInfo(DSSCircObj, pvNames);
+%
+%% Description
+% Function to get the information about the PV plants in the circuit and
+% return a structure with the information. If the optional input of
+% pvNames is filled, the function returns information for the specified
+% subset of PV installations, excluding the miscellaneous parameters
+% mentioned in the outputs below.
+%
+%% Inputs
+% * *|DSSCircObj|* - link to OpenDSS active circuit and command text (from DSSStartup)
+% * *|pvNames|* - optional cell array of PV names to get information for
+%
+%% Outputs
+% *|PV|* is a structure with all the parameters for the
+% PV plants in the active circuit.  Fields are:
+%
+% * _name_ - Name of the PV source.
+% * _numPhases_ - Number of phases associated with the PV.
+% * _busName_ - Name of the associated bus.
+% * _enabled_ - {1|0} indicates whether this element is enabled in the simulation.
+% * _current_ - average phase current output
+% * _coordinates_ - Coordinates for the PV bus
+% * _distance_ - Line distance from the PV bus to the substation, obtained from getBusInfo.
+% * _phaseVoltages_ - Value of voltage magnitudes calculated from
+% the complex voltage returned by OpenDSS. Length is always 3,
+% returning 0 for phases not on the bus
+% * _phaseVoltagesPU_ - Per-unit value of voltage magnitudes calculated from
+% the complex per-unit voltage returned by OpenDSS. Length is always 3,
+% returning 0 for phases not on the bus.
+% * _voltage_, _voltagePU_, _voltagePhasorPU_, _phaseVoltages_, _phaseVoltagePhasors_, ... 
+% _phaseVoltagePhasorsPU_, _phaseVoltagesLL_, _phaseVoltagesLLPU_, _voltageLL_, _voltageLLPU_ - voltages and voltage phasors
+% * _seqVoltages_, _cplxVoltages_, _seqCurrents_, _cplxSeqCurrents_ - zero, positive, and negative sequence voltages and currents magnitude or complex phasors
+% * _phasePowerReal_ - 3-element array of the real components of each
+% phase's complex power injected by generator. Phases that are not present will return 0.
+% * _phasePowerReactive_ - 3-element array of the imaginary components of each
+% phase's complex power injected by generator. Phases that are not present will return 0.
+% * _powerReal_ - Total _phasePowerReal_.
+% * _powerReactive_ - Total _phasePowerReactive_.
+% * _losses_ - total real and imaginary power losses
+% * _phaseLosses_ - real and imaginary power losses
+% * _kW_, _kvar_, _kva_ - Rated power of the PV
+% * _kV_ - Rated voltage.
+% * _PF_ - Rated power factor of the PV.
+% * _pmpp_ - DC power rating of the PV system.
+%
+%%% Example
+% Returns PV information in the circuit
+%
+[DSSCircObj, DSSText, gridpvPath] = DSSStartup;
+DSSText.command = ['Compile "' gridpvPath 'ExampleCircuit\master_Ckt24.dss"'];
+DSSText.command = ['Compile "' gridpvPath 'ExampleCircuit\Ckt24_PV_Distributed_7_5.dss"'];
+DSSText.command = 'solve';
+PV = getPVInfo(DSSCircObj) %Get information for all PV
+PV = getPVInfo(DSSCircObj, {'PV05410_g2100nj9400'}) %Get information for one PV
+PV = getPVInfo(DSSCircObj, [{'PV05410_g2100nj9400'};{'PV05410_g2100sn7200'}]); %Get information for two PV
+%
+
+
+##### SOURCE END #####
+--></body></html>

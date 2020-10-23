@@ -1,0 +1,177 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>getBusInfo</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-11-24"><meta name="DC.source" content="getBusInfo_help.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>getBusInfo</h1><!--introduction--><p>Gets the information for all Bus in busNames</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Inputs</a></li><li><a href="#4">Outputs</a></li><li><a href="#5">Example</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre>Buses = getBusInfo(DSSCircObj);
+Buses = getBusInfo(DSSCircObj,busNames);
+Buses = getBusInfo(DSSCircObj,busNames,forceFindCoords);</pre><h2>Description<a name="2"></a></h2><p>Function to get the information for buses in the OpenDSS circuit.  If optional input busNames contains a cell array, the function will return a structure for each busName, otherwise Buses will contain all buses in the circuit.</p><h2>Inputs<a name="3"></a></h2><div><ul><li><b><tt>DSSCircObj</tt></b> - link to OpenDSS active circuit and command text (from DSSStartup)</li><li><b><tt>busNames</tt></b> - optional cell array of bus names to get information for</li><li><b><tt>forceFindCoords</tt></b> - optional input to force the function to try to find the coordinates for the busNames by searching for other connected buses that do have coordinates</li></ul></div><h2>Outputs<a name="4"></a></h2><p><b><tt>Buses</tt></b> is a structure with all the parameters for the buses in busNames.  Fields are:</p><div><ul><li><i>name</i> - The busname acquired from the busNames input.</li><li><i>numPhases</i> - Returns the number of nodes on the bus.</li><li><i>nodes</i> - Returns the nodes at the bus.</li><li><i>voltageAngle</i> - Average difference in angle from each voltage phase to a standard reference frame.</li><li><i>voltage</i> - Average voltage magnitude of all phases</li><li><i>voltagePU</i> - Average per unit voltage magnitude of all phases.</li><li><i>phaseVoltages</i> - Value of voltage magnitudes calculated from the complex voltage returned by OpenDSS. Length is always 3, returning 0 for phases not on the bus.</li><li><i>phaseVoltagesPU</i> - Per-unit value of voltage magnitudes calculated from the complex per-unit voltage returned by OpenDSS. Length is always 3, returning 0 for phases not on the bus.</li><li><i>distance</i> - Line distance from the bus to the substation.</li><li><i>kVBase</i> - The bus's base voltage in kV.</li><li><i>seqVoltages</i> - Sequence voltage magnitude for zero, positive, negative.</li><li><i>cplxSeqVoltages</i> - Sequence voltage phasors with real and imaginary zero, real and imaginary positive, and real and imaginary negative.</li><li><i>ZscMatrix</i> - The impedance matrix for the phases at the bus in pairs of real and imaginary numbers combined into one row.</li><li><i>Zsc1</i> - The short circuit positive-sequence real and imaginary impedance</li><li><i>Zsc0</i> - The short circuit zero-sequence real and imaginary impedance</li><li><i>YscMatrix</i> - The admittance matrix for the phases at the bus in pairs of real and imaginary numbers combined into one row.</li><li><i>coordinates</i> - Returns coordinates stored in OpenDSS for the active bus. If coordinates do not exist and forceFindCoords is 1, it returns coordinates of the coordinates of the nearest upstream element.</li></ul></div><h2>Example<a name="5"></a></h2><p>Returns bus information</p><pre class="codeinput">[DSSCircObj, DSSText, gridpvPath] = DSSStartup;
+DSSText.command = [<span class="string">'Compile "'</span> gridpvPath <span class="string">'ExampleCircuit\master_Ckt24.dss"'</span>];
+DSSText.command = <span class="string">'solve'</span>;
+Buses = getBusInfo(DSSCircObj) <span class="comment">%Get information for all buses</span>
+Buses = getBusInfo(DSSCircObj,{<span class="string">'N1311915'</span>}) <span class="comment">%Get information for one bus</span>
+<span class="comment">%</span>
+</pre><pre class="codeoutput">
+Buses = 
+
+6058x1 struct array with fields:
+
+    name
+    numPhases
+    nodes
+    voltageAngle
+    voltage
+    voltagePU
+    phaseVoltages
+    phaseVoltagesPU
+    distance
+    kVBase
+    seqVoltages
+    cplxSeqVoltages
+    ZscMatrix
+    Zsc1
+    Zsc0
+    YscMatrix
+    coordinates
+
+
+Buses = 
+
+               name: 'N1311915'
+          numPhases: 1
+              nodes: 1
+       voltageAngle: 0.6600
+            voltage: 2.0362e+04
+          voltagePU: 1.0223
+      phaseVoltages: [2.0362e+04 0 0]
+    phaseVoltagesPU: [1.0223 0 0]
+           distance: 2.3813
+             kVBase: 19.9186
+        seqVoltages: [-1 -1 -1]
+    cplxSeqVoltages: [-1 -1 -1 -1 -1 -1]
+          ZscMatrix: 0
+               Zsc1: [0 0]
+               Zsc0: [0 0]
+          YscMatrix: 0
+        coordinates: [31.6145 -80.9461]
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% getBusInfo
+% Gets the information for all Bus in busNames
+%
+%% Syntax
+%  Buses = getBusInfo(DSSCircObj);
+%  Buses = getBusInfo(DSSCircObj,busNames);
+%  Buses = getBusInfo(DSSCircObj,busNames,forceFindCoords);
+%
+%% Description
+% Function to get the information for buses in the OpenDSS circuit.  If optional input busNames
+% contains a cell array, the function will return a structure for each busName, otherwise Buses will
+% contain all buses in the circuit.
+%
+%% Inputs
+% * *|DSSCircObj|* - link to OpenDSS active circuit and command text (from DSSStartup)
+% * *|busNames|* - optional cell array of bus names to get information for
+% * *|forceFindCoords|* - optional input to force the function to try to
+% find the coordinates for the busNames by searching for other connected
+% buses that do have coordinates
+%
+%% Outputs
+% *|Buses|* is a structure with all the parameters for the
+% buses in busNames.  Fields are:
+%
+% * _name_ - The busname acquired from the busNames input.
+% * _numPhases_ - Returns the number of nodes on the bus.
+% * _nodes_ - Returns the nodes at the bus.
+% * _voltageAngle_ - Average difference in angle from each voltage phase to a standard reference frame.
+% * _voltage_ - Average voltage magnitude of all phases
+% * _voltagePU_ - Average per unit voltage magnitude of all phases.
+% * _phaseVoltages_ - Value of voltage magnitudes calculated from the complex voltage returned by OpenDSS. Length is always 3, returning 0 for phases not on the bus.
+% * _phaseVoltagesPU_ - Per-unit value of voltage magnitudes calculated from the complex per-unit voltage returned by OpenDSS. Length is always 3, returning 0 for phases not on the bus.
+% * _distance_ - Line distance from the bus to the substation.
+% * _kVBase_ - The bus's base voltage in kV.
+% * _seqVoltages_ - Sequence voltage magnitude for zero, positive, negative.
+% * _cplxSeqVoltages_ - Sequence voltage phasors with real and imaginary zero, real and imaginary positive, and real and imaginary negative.
+% * _ZscMatrix_ - The impedance matrix for the phases at the bus in pairs of real and imaginary numbers combined into one row.
+% * _Zsc1_ - The short circuit positive-sequence real and imaginary impedance
+% * _Zsc0_ - The short circuit zero-sequence real and imaginary impedance
+% * _YscMatrix_ - The admittance matrix for the phases at the bus in pairs of real and imaginary numbers combined into one row.
+% * _coordinates_ - Returns coordinates stored in OpenDSS for the active bus. If coordinates do not exist and forceFindCoords is 1, it returns coordinates of the coordinates of the nearest upstream element.
+%
+%%% Example
+% Returns bus information
+%
+[DSSCircObj, DSSText, gridpvPath] = DSSStartup;
+DSSText.command = ['Compile "' gridpvPath 'ExampleCircuit\master_Ckt24.dss"'];
+DSSText.command = 'solve';
+Buses = getBusInfo(DSSCircObj) %Get information for all buses
+Buses = getBusInfo(DSSCircObj,{'N1311915'}) %Get information for one bus
+%
+
+
+##### SOURCE END #####
+--></body></html>

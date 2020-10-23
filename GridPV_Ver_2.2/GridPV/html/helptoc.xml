@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<toc version="2.0">
+<!-- First tocitem specifies top level in Help browser Contents pane -->
+<!-- This can be a roadmap page, as shown below, or a content page -->
+    <tocitem target="product_page.html">GridPV Toolbox
+        <tocitem target="gettingStarted.html" image="HelpIcon.GETTING_STARTED">
+            Getting Started with the GridPV Toolbox
+        </tocitem>
+        <!-- Function reference next -->
+        <!-- First item is page describing function categories, if any -->
+        <tocitem target="functions_by_cat.html" 
+                 image="HelpIcon.FUNCTION">Function Reference
+            <!-- First category, with link to anchor in above page -->
+            <tocitem target="functions_by_cat.html#1">OpenDSS Functions
+                <!-- Inside category, list its functions alphabetically -->
+                <tocitem target="DSSStartup_help.html">DSSStartup</tocitem>
+                <tocitem target="getBusCoordinatesArray_help.html">getBusCoordinatesArray</tocitem>
+                <tocitem target="getBusInfo_help.html">getBusInfo</tocitem>
+                <tocitem target="getCapacitorInfo_help.html">getCapacitorInfo</tocitem>
+                <tocitem target="getCoordinates_help.html">getCoordinates</tocitem>
+                <tocitem target="getGeneratorInfo_help.html">getGeneratorInfo</tocitem>
+                <tocitem target="getLineInfo_help.html">getLineInfo</tocitem>
+                <tocitem target="getLoadInfo_help.html">getLoadInfo</tocitem>
+                <tocitem target="getPVInfo_help.html">getPVInfo</tocitem>
+                <tocitem target="getTransformerInfo_help.html">getTransformerInfo</tocitem>
+                <tocitem target="isinterfaceOpenDSS_help.html">isinterfaceOpenDSS</tocitem>
+                <!-- ... -->
+            </tocitem>
+            <!-- Second category, with link to anchor in above page -->
+            <tocitem target="functions_by_cat.html#2">Circuit Analysis Functions
+                <!-- Inside category, list its functions alphabetically -->
+                <tocitem target="circuitCheck_help.html">circuitCheck</tocitem>
+                <tocitem target="findDownstreamBuses_help.html">findDownstreamBuses</tocitem>
+                <tocitem target="findHighestImpedanceBus_help.html">findHighestImpedanceBus</tocitem>
+                <tocitem target="findLongestDistanceBus_help.html">findLongestDistanceBus</tocitem>
+                <tocitem target="findSubstationLocation_help.html">findSubstationLocation</tocitem>
+                <tocitem target="findUpstreamBuses_help.html">findUpstreamBuses</tocitem>
+                <!-- ... -->
+             </tocitem>
+            <!-- Third category, with link to anchor in above page -->
+            <tocitem target="functions_by_cat.html#3">Plotting Functions
+                <!-- ... -->
+                <tocitem target="plotAmpProfile_help.html">plotAmpProfile</tocitem>
+                <tocitem target="plotCircuitLines_help.html">plotCircuitLines</tocitem>
+                <tocitem target="plotCircuitLinesOptions_help.html">plotCircuitLinesOptions</tocitem>
+                <tocitem target="plotKVARProfile_help.html">circuitplotKVARProfile</tocitem>
+                <tocitem target="plotKWProfile_help.html">plotKWProfile</tocitem>
+                <tocitem target="plotMonitor_help.html">plotMonitor</tocitem>
+                <tocitem target="plotVoltageProfile_help.html">plotVoltageProfile</tocitem>
+            </tocitem>
+ 		 <!-- Fourth category, with link to anchor in above page -->
+            <tocitem target="functions_by_cat.html#4">Geographic Mapping Functions
+                <!-- ... -->
+                <tocitem target="initCoordConversion_help.html">initCoordConversion</tocitem>
+                <tocitem target="createCircuitCoordConversion_help.html">createCircuitCoordConversion</tocitem>
+                <tocitem target="createCircuitCoordConversionUTM_help.html">createCircuitCoordConversionUTM</tocitem>
+                <tocitem target="plotGoogleMap_help.html">plotGoogleMap</tocitem>
+            </tocitem>
+ 		 <!-- Fifth category, with link to anchor in above page -->
+            <tocitem target="functions_by_cat.html#5">Solar Modeling Functions
+                <!-- ... -->
+                <tocitem target="placePVplant_help.html">placePVplant</tocitem>
+                <tocitem target="createPVscenarioFiles_help.html">createPVscenarioFiles</tocitem>
+                <tocitem target="distributePV_help.html">distributePV</tocitem>
+                <tocitem target="findMaxPenetrationTime_help.html">findMaxPenetrationTime</tocitem>
+                <tocitem target="IneichenClearSkyModel_help.html">IneichenClearSkyModel</tocitem>
+                <tocitem target="makePFoutputFunction_help.html">makePFoutputFunction</tocitem>
+                <tocitem target="makePFprofile_help.html">makePFprofile</tocitem>
+                <tocitem target="makePFschedule_help.html">makePFschedule</tocitem>
+                <tocitem target="makeVVCcurve_help.html">makeVVCcurve</tocitem>
+                <tocitem target="pvl_WVM_help.html">pvl_WVM</tocitem>
+            </tocitem>
+ 		 <!-- Sixth category, with link to anchor in above page -->
+            <tocitem target="functions_by_cat.html#6">Example Simulations Functions
+                <!-- ... -->
+                <tocitem target="examplePeakTimeAnalysis_help.html">examplePeakTimeAnalysis</tocitem>
+                <tocitem target="exampleTimeseriesAnalyses_help.html">exampleTimeseriesAnalyses</tocitem>
+                <tocitem target="exampleVoltageAnalysis_help.html">exampleVoltageAnalysis</tocitem>
+            </tocitem>
+        </tocitem>
+    </tocitem>
+</toc>

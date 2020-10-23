@@ -1,0 +1,119 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Getting Started</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-11-24"><meta name="DC.source" content="gettingStarted.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Getting Started</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Introduction</a></li><li><a href="#2">Objectives</a></li><li><a href="#3">What is OpenDSS?</a></li><li><a href="#4">Initial Steps</a></li></ul></div><h2>Introduction<a name="1"></a></h2><p>The power industry is seeing large amounts of distributed generation being added onto the electric power distribution system.  This presents a new set of issues, especially for renewable generation with variability.  This presents a new set of issues, especially for renewable generation with variable intermittent power output.  It is important to precisely model the impact of solar energy on the grid and to help distribution planners perform the necessary interconnection impact studies.  The variability in the load, throughout the day and year, and the variability of solar, throughout the year and because of clouds, makes the analysis increasingly complex.  Both accurate data and timeseries simulations are required to fully understand the impact of variability on distribution system operations and reliability.</p><p>This help manual describes the functionality and use of a MATLAB toolbox for using OpenDSS to model the variable nature of the distribution system load and solar energy.  OpenDSS is used to model the distribution system with MATLAB providing the frontend user interface through a COM interface.  OpenDSS is designed for distribution system analysis and is very good at timeseries analysis with changing variables and dynamic control.  OpenDSS is command based and has limited visualization capabilities.  By bringing control of OpenDSS to MATLAB, the functionality of OpenDSS is utilized while adding the looping, advanced analysis, and visualization abilities of MATLAB.</p><p>The functions in the toolbox are categorized into five main sections: OpenDSS functions, Solar Modeling functions, Plotting functions, Geographic Mapping functions, and Example Simulations.  Each function is documented with the function use syntax, full description, function input list, function output list, and an example use.  The function example also includes an example output of the function.</p><h2>Objectives<a name="2"></a></h2><p>The GridPV Toolbox for Matlab provides a set of well-documented functions for simulating the performance of photovoltaic energy systems.</p><p>The toolbox was developed at Georgia Institute of Technology and Sandia National Laboratories.  It implements many of the models and methods developed at the Labs.  Future versions are planned that will add more functions and capability.</p><h2>What is OpenDSS?<a name="3"></a></h2><p>The distribution system electrical modeling is done in the open source software OpenDSS from the Electric Power Research Institute (EPRI). OpenDSS is commonly used to model solar on the grid because of its high-resolution time series analysis capabilities. It is a 3-phase distribution system analysis power flow solver that can handle unbalanced phases.</p><h2>Initial Steps<a name="4"></a></h2><p>Each toolbox function has its own example contained in the header file. These examples will run on their own using the example circuit and may be useful for becoming familiar with the toolbox.</p><p>The basic process for getting started with the toolbox is:</p><pre class="codeinput"><span class="comment">% 1. Start the OpenDSS COM. Needs to be done each time MATLAB is opened</span>
+    [DSSCircObj, DSSText, gridpvPath] = DSSStartup;
+<span class="comment">% 2. Compiling the circuit</span>
+    DSSText.command = [<span class="string">'Compile "'</span> gridpvPath <span class="string">'ExampleCircuit\master_Ckt24.dss"'</span>];
+<span class="comment">% 3. Solve the circuit. Call anytime you want the circuit to resolve</span>
+    DSSText.command = <span class="string">'solve'</span>;
+<span class="comment">% 4. Run circuitCheck function to double-check for any errors in the circuit before using the toolbox</span>
+    warnSt = circuitCheck(DSSCircObj);
+</pre><pre class="codeoutput">
+
+
+
+
+
+
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Getting Started
+%
+%% Introduction
+% The power industry is seeing large amounts of distributed generation being added onto the electric power distribution system.  This presents a new set of issues, especially for renewable generation with variability.  This presents a new set of issues, especially for renewable generation with variable intermittent power output.  It is important to precisely model the impact of solar energy on the grid and to help distribution planners perform the necessary interconnection impact studies.  The variability in the load, throughout the day and year, and the variability of solar, throughout the year and because of clouds, makes the analysis increasingly complex.  Both accurate data and timeseries simulations are required to fully understand the impact of variability on distribution system operations and reliability.  
+% 
+% This help manual describes the functionality and use of a MATLAB toolbox for using OpenDSS to model the variable nature of the distribution system load and solar energy.  OpenDSS is used to model the distribution system with MATLAB providing the frontend user interface through a COM interface.  OpenDSS is designed for distribution system analysis and is very good at timeseries analysis with changing variables and dynamic control.  OpenDSS is command based and has limited visualization capabilities.  By bringing control of OpenDSS to MATLAB, the functionality of OpenDSS is utilized while adding the looping, advanced analysis, and visualization abilities of MATLAB.
+%
+% The functions in the toolbox are categorized into five main sections: OpenDSS functions, Solar Modeling functions, Plotting functions, Geographic Mapping functions, and Example Simulations.  Each function is documented with the function use syntax, full description, function input list, function output list, and an example use.  The function example also includes an example output of the function.
+
+%% Objectives
+% The GridPV Toolbox for Matlab provides a set of well-documented functions for simulating the performance of photovoltaic energy systems.
+% 
+% The toolbox was developed at Georgia Institute of Technology and Sandia National Laboratories.  It implements many of the models and methods developed at the Labs.  Future versions are planned that will add more functions and capability.
+
+%% What is OpenDSS?
+% The distribution system electrical modeling is done in the open source software OpenDSS from the Electric Power Research Institute (EPRI). OpenDSS is commonly used to model solar on the grid because of its high-resolution time series analysis capabilities. It is a 3-phase distribution system analysis power flow solver that can handle unbalanced phases.
+
+%% Initial Steps
+% Each toolbox function has its own example contained in the header file. These examples will run on their own using the example circuit and may be useful for becoming familiar with the toolbox.
+%
+% The basic process for getting started with the toolbox is:
+
+% 1. Start the OpenDSS COM. Needs to be done each time MATLAB is opened
+    [DSSCircObj, DSSText, gridpvPath] = DSSStartup;
+% 2. Compiling the circuit
+    DSSText.command = ['Compile "' gridpvPath 'ExampleCircuit\master_Ckt24.dss"'];
+% 3. Solve the circuit. Call anytime you want the circuit to resolve
+    DSSText.command = 'solve';
+% 4. Run circuitCheck function to double-check for any errors in the circuit before using the toolbox
+    warnSt = circuitCheck(DSSCircObj);
+
+##### SOURCE END #####
+--></body></html>

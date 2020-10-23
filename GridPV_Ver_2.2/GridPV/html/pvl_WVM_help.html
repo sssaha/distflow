@@ -1,0 +1,134 @@
+<html>
+<head>
+<style type="text/css">
+ .row { vertical-align: top; height:auto !important; }
+ .list {display:none; }
+ .show {display: none; }
+ .hide:target + .show {display: inline; }
+ .hide:target {display: none; }
+ .hide:target ~ .list {display:inline; }
+ @media print { .hide, .show { display: none; } }
+ </style>
+ </head>
+ 
+ <body>
+  <h1> <font color = "3399FF">Wavelet Variability Model (WVM) Help File</font></h1>
+ This is a help file for the <b>pvl_WVM</b> MatLab code. It contains links to examples and some FAQs. 
+ Contents: <p>
+  <a href="#whatitdoes"> What the WVM does</a> <br>
+ <a href="#whatsneeded"> WVM Code Syntax and Required Inputs</a> <br>
+  <a href="#examples"> Examples</a> <br>
+  <a href="#cloudspeed"> Determining the Cloud Speed</a> <br>
+    <a href="#converttopower"> Convert WVM Smoothed Irradiance to Power Output</a> <br>
+
+   <a href="#references"> References</a> <br>
+   <a href="#license"> BSD License</a> <br>
+
+   <a name="whatitdoes"><h2> <font color = "3399FF">What the WVM does</font></h2></a>
+The WVM models the average irradiance over a PV plant footprint. It does this by smoothing the measurements from an irradiance points sensor by different amounts at different timescales. The WVM smoothed irradiance can be used with irradiance to power translation methods to create simulated PV plant power output. To run the WVM, you need measurements from an irradiance point sensor, some information about the PV plant you'd like to simulate (see code syntax section and examples section below), and the cloud speed. See reference [1] for more details.
+
+
+  
+  
+ <a name="whatsneeded"><h2> <font color = "3399FF">WVM Code Syntax and Required Inputs</font></h2></a>
+<font color = "red"> Note: you'll need the PV_Lib toolbox installed on your computer to run the WVM. If you don't already have it, get the PV_Lib toolbox <a href = "http://pvpmc.org/pv-lib">here</a>. <p> </font>
+ 
+ The WVM syntax is: <p>
+  <b>smooth_irradiance = pvl_WVM(irr_sensor, plantinfo, cloud_speed) </b><p>
+  computes the spatially-smoothed irradiance using the wavelet variability model. 
+ <p>
+ <b>irr_sensor </b> is a struct with variables:<br>
+   &nbsp; &nbsp; &nbsp; <b>irr_sensor.irr </b> the irradiance measurement<br>
+   &nbsp; &nbsp; &nbsp; <b>irr_sensor.time</b> the time stamps (Matlab time vector) for irr_sensor.irr<br>
+   &nbsp; &nbsp; &nbsp; <b>irr_sensor.Lat</b> latitude of the sensor<br>
+   &nbsp; &nbsp; &nbsp; <b>irr_sensor.Lon </b> longitude of the sensor<br>
+   &nbsp; &nbsp; &nbsp; <b>irr_sensor.alt </b> altitude of the sensor<br>
+   &nbsp; &nbsp; &nbsp; <b>irr_sensor.tilt </b> tilt angle of the sensor, 0 = flat (e.g., GHI)<br>
+    &nbsp; &nbsp; &nbsp; <b>irr_sensor.azimuth </b> azimuth angle of the sensor, 180 = due south<br>
+    &nbsp; &nbsp; &nbsp; <b>(optional) irr.sensor.clear_sky_irradiance </b> manually enter the clear-sky irradiance (e.g., for an irradiance sensor on a tracking system) <br>
+    &nbsp; &nbsp; &nbsp; <b>irr_sensor.UTCoffset </b> UTC offset<br>
+ <p>
+ <b>plantinfo</b> is a struct describing the plant to simulate with variables:
+    <br>&nbsp; &nbsp; &nbsp;<b>plantinfo.tilt tilt </b> angle of plant modules 
+    <br>&nbsp; &nbsp; &nbsp;<b>plantinfo.azimuth </b> azimuth angle of plant modules
+    <br>&nbsp; &nbsp; &nbsp;<b>(optional) plantinfo.clear_sky_irrPOA </b> manually enter the clear-sky irradiance in the module POA (e.g., for tracking systems)
+    <br>&nbsp; &nbsp; &nbsp;<b>plantinfo.type </b> 'square','polygon', or 'discrete'
+        <br>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<b>'square' </b> square PV plant with specified number of MWs and PV density
+        <br>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<b>'polygon' </b> custom PV plant shape (define vetiticies in lat/lon)
+        <br>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<b>'discrete' </b> simulate only certain points (e.g., to replicate output of multiple point sensors)
+   <br>&nbsp; &nbsp; &nbsp;<b>plantinfo.MW </b> MW of PV installed (not necessary for 'discrete' type)
+    <br>&nbsp; &nbsp; &nbsp;<b>plantinfo.PVdensity</b>  W PV installed per m2 in plant area (e.g., 41 W/m2 is 1MW per 6 acres) (not necessary for 'discrete' type)
+    <br>&nbsp; &nbsp; &nbsp;<b>plantinfo.Lat </b>(only needed for type 'polygon' or 'discrete') latitude of polygon verticies or discrete points
+    <br>&nbsp; &nbsp; &nbsp;<b>plantinfo.Lon </b>(only needed for type 'polygon' or 'discrete') longitude of polygon verticies or discrete points
+ <p>
+ <b>cloud_speed </b> is a single value of the daily cloud speed 
+<p>
+<b> smooth_irradiance</b> is the WVM smoothed irradiance representing the average irradiance over the plant footprint. It maintains the time stamps of the input irradiance (<b>irr_sensor.time</b>).
+ 
+  <a name="examples"><h2> <font color = "3399FF">Examples </font></h2></a>
+  There are three basic ways to model the PV power plant: 
+   <UL>
+<LI><h3>Assume a square plant.</h3> <a href = "./html/pvl_WVM_example_square.html">WVM example with a square plant.</a><p> This is the easiest method and requires only the plant MW rating and the PV density. A PV density of 41 W/m2 corresponds to 1MW per 6 acres, which is a common rule of thumb for PV plants.<br>
+<img src = "./html/Square_Plant.png" width="400"><br>
+
+<LI><h3>Specify polygon vertices to define plant outline.</h3> <a href = "./html/pvl_WVM_example_polygon.html">WVM example with a polygon plant.</a><p> 
+
+This setting allows you to simulate a PV plant that is not a square-shape by providing the latitude and longitude of the polygon vertices corresponding to the plant footprint. 
+
+<br><img src = "./html/Polygon_Plant.png" width="400"><br>
+
+<LI><h3>Simulate the aggregate output at defined discrete points.</h3> <a href = "./html/pvl_WVM_example_discrete.html">WVM example with discrete inputs.</a><p> This setting simulates the average irradiance measured using a network of irradiance point sensors. The WVM output on this setting will not be the average irradiance over the whole footprint, but rather the average of only the discrete locations of the point sensors. The user provides the latitude and longitude of the points to simulate.
+
+<br><img src = "./html/Discrete_Plant.png" width="400"><br>
+
+</UL>
+
+  <a name="cloudspeed"><h2> <font color = "3399FF">Determining the Cloud Speed</font></h2></a>
+The cloud speed is an important input to the WVM, but can be difficult to obtain. The slower the cloud speed, the greater the smoothing will be across the PV plant. Three ways to determine the cloud speed are:
+<UL>
+<LI> Derive cloud speeds from numerical weather forecasts, as described in reference [2].  
+<LI> Use a ground network of irradiance sensors, e.g., as described in reference [3]. See the supporting program <b>pvl_WVM_compute_CS_from_sensor_network</b> that can be used to compute the cloud speed if you have an irradiance sensor network. 
+<LI> Make an educated guess. Based on [2] and other work, coastal areas such as Hawaii, Puerto Rico, and San Diego typically have slow cloud speeds (e.g., 3-7 m/s), probably due to the typically low-level clouds. Inland areas such as Las Vegas and Albuquerque typically have fast clouds speeds (e.g., 10-30 m/s), likely due to the typically high-level clouds.
+</UL>
+
+ <a name="converttopower"><h2> <font color = "3399FF">Convert WVM Smoothed Irradiance to Power Output </font></h2></a>
+The WVM simulates plant average irradiance, but plant power output is more often of interest. A variety of irradiance to power translation models exist, ranging from:
+<UL>
+<LI> Simple linear models such as <br><b>Power = Irradiance * Plant Area * Module Efficiency * DCtoAC Derate,</b><br> where the DCtoAC Derate can be estimated from the <a href = "http://rredc.nrel.gov/solar/calculators/pvwatts/version1/derate.cgi">PVWatts Derate Table </a>). Since the rated capacity of the PV modules is usually more readily known than the module efficiency, this equation can alternatively be written as: <br><b>Power = Irradiance/(1000 W/m2) * Rated Capacity * DCtoAC Derate.</b><br>
+
+<LI>Complicated models accounting for temperature, module and inverter technology, etc. Some such models are already included in the PV_Lib toolbox, such as <b>pvl_sapm</b> and <b>pvl_snlinverter</b>.
+  </UL> 
+  
+ 
+
+  
+ <a name="references"><h2> <font color = "3399FF">References</font></h2></a>
+The main WVM references are: <p>
+1. Lave, M.; Kleissl, J.; Stein, J.S., "A Wavelet-Based Variability Model (WVM) for Solar PV Power Plants," Sustainable Energy, IEEE Transactions on , vol.4, no.2, pp.501,509, April 2013, doi: 10.1109/TSTE.2012.2205716 <p>
+2. Lave, M.; Kleissl, J; "Cloud speed impact on solar variability scaling - Application to the wavelet variability model", Solar Energy, Volume 91, May 2013, Pages 11-21, ISSN 0038-092X, http://dx.doi.org/10.1016/j.solener.2013.01.023. <p>
+3. J.L. Bosch, Y. Zheng, J. Kleissl, Deriving cloud velocity from an array of solar radiation measurements, Solar Energy, Volume 87, January 2013, Pages 196-203, ISSN 0038-092X, http://dx.doi.org/10.1016/j.solener.2012.10.020.
+(http://www.sciencedirect.com/science/article/pii/S0038092X12003854)
+ 
+  
+ 
+ 
+ <a name="license"><h2> <font color = "3399FF">BSD License </font></h2></a>
+Copyright (c) 2012, The Regents of the University of California <p>
+All rights reserved.<p>
+<p>
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:<p>
+<p>
+Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.<p>
+<p>
+Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.<p>
+<p>
+Neither the name The Regents of the University of California, the names of its campuses nor any abbreviation thereof, nor the names of the contributors may be used to endorse or promote products derived from this software without specific prior written permission.<p>
+<p>
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.<p>
+<p>
+ 
+ 
+ </body>
+ 
+ 
+ </html>

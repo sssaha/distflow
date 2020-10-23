@@ -1,0 +1,169 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>plotGoogleMap</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-11-24"><meta name="DC.source" content="plotGoogleMap_help.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>plotGoogleMap</h1><!--introduction--><p>Plots a google map on the current axes using the Google Static Maps API</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Inputs</a></li><li><a href="#4">Outputs</a></li><li><a href="#5">References:</a></li><li><a href="#6">Copyright</a></li><li><a href="#7">Example</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre>h = plotGoogleMap(Property, Value,...);
+[lonVec latVec imag] = plotGoogleMap(Property, Value,...);</pre><h2>Description<a name="2"></a></h2><p>Plots the google map on the current axes given the input properties selected</p><h2>Inputs<a name="3"></a></h2><div><ul><li><b><tt>Property</tt></b> - property name from the list below along with the</li><li><b><tt>Value</tt></b> for the property.  The default for each porperty is in parenthesis.</li><li>-- <b>'MapType'</b>         - ('roadmap')  Type of map to return. Any of [roadmap,                                  satellite, terrain, hybrid) See the Google Maps API for                                  more information.</li><li>-- <b>'Alpha'</b> (1)         - (0-1) Transparency level of the map (0 is fully                                  transparent). While the map is always                                  moved to the bottom of the plot (i.e. will                                  not hide previously drawn items), this can                                  be useful in order to increase readability                                  if many colors are plotted (using SCATTER                                  for example).</li><li>-- <b>'Marker'</b>            - The marker argument is a text string with fields                                  conforming to the Google Maps API. The                                  following are valid examples:                                  '43.0738740,-70.713993' (dflt midsize orange marker)                                  '43.0738740,-70.713993,blue' (midsize blue marker)                                  '43.0738740,-70.713993,yellowa' (midsize yellow                                  marker with label "A")                                  '43.0738740,-70.713993,tinyredb' (tiny red marker                                  with label "B")</li></ul></div><h2>Outputs<a name="4"></a></h2><div><ul><li><b><tt>h</tt></b> - Handle to the plotted map</li><li><b><tt>lonVect</tt></b> - Vector of Longidute coordinates (WGS84) of the image</li><li><b><tt>latVect</tt></b> - Vector of Latidute coordinates (WGS84) of the image</li><li><b><tt>imag</tt></b> - Image matrix (height,width,3) of the map</li></ul></div><h2>References:<a name="5"></a></h2><p><a href="http://www.mathworks.com/matlabcentral/fileexchange/24113">http://www.mathworks.com/matlabcentral/fileexchange/24113</a> <a href="http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/">http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/</a> <a href="http://developers.google.com/maps/documentation/staticmaps/">http://developers.google.com/maps/documentation/staticmaps/</a></p><pre>Acknowledgement to Val Schmidt for his submission of get_google_map.m
+Acknowledgement to Zohar Bar-Yehuda for his submission of plot_google_map.mp</pre><h2>Copyright<a name="6"></a></h2><p>Copyright (c) 2010, Zohar Bar-Yehuda Copyright (c) 2010, Val Schmidt All rights reserved.</p><p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p><pre>   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in
+     the documentation and/or other materials provided with the distribution</pre><p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p><h2>Example<a name="7"></a></h2><p>Plot a map showing some capitals in Europe:</p><pre class="codeinput">lat = [48.8708   51.5188   41.9260   40.4312   52.523   37.982];
+lon = [2.4131    -0.1300    12.4951   -3.6788    13.415   23.715];
+plot(lon,lat,<span class="string">'.r'</span>,<span class="string">'MarkerSize'</span>,20)
+plotGoogleMap
+<span class="comment">%</span>
+</pre><img vspace="5" hspace="5" src="plotGoogleMap_help_01.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% plotGoogleMap
+% Plots a google map on the current axes using the Google Static Maps API
+%
+%% Syntax
+%  h = plotGoogleMap(Property, Value,...);
+%  [lonVec latVec imag] = plotGoogleMap(Property, Value,...);
+%
+%% Description
+% Plots the google map on the current axes given the input properties
+% selected
+%
+%% Inputs
+% * *|Property|* - property name from the list below along with the
+% * *|Value|* for the property.  The default for each porperty is in
+% parenthesis.
+% * REPLACE_WITH_DASH_DASH *'MapType'*         - ('roadmap')  Type of map to return. Any of [roadmap, 
+%                                  satellite, terrain, hybrid) See the Google Maps API for
+%                                  more information. 
+% * REPLACE_WITH_DASH_DASH *'Alpha'* (1)         - (0-1) Transparency level of the map (0 is fully
+%                                  transparent). While the map is always
+%                                  moved to the bottom of the plot (i.e. will
+%                                  not hide previously drawn items), this can
+%                                  be useful in order to increase readability
+%                                  if many colors are plotted (using SCATTER
+%                                  for example).
+% * REPLACE_WITH_DASH_DASH *'Marker'*            - The marker argument is a text string with fields
+%                                  conforming to the Google Maps API. The
+%                                  following are valid examples:
+%                                  '43.0738740,-70.713993' (dflt midsize orange marker)
+%                                  '43.0738740,-70.713993,blue' (midsize blue marker)
+%                                  '43.0738740,-70.713993,yellowa' (midsize yellow
+%                                  marker with label "A")
+%                                  '43.0738740,-70.713993,tinyredb' (tiny red marker
+%                                  with label "B")
+%
+%% Outputs
+% * *|h|* - Handle to the plotted map
+% * *|lonVect|* - Vector of Longidute coordinates (WGS84) of the image
+% * *|latVect|* - Vector of Latidute coordinates (WGS84) of the image
+% * *|imag|* - Image matrix (height,width,3) of the map
+%
+%% References:
+% http://www.mathworks.com/matlabcentral/fileexchange/24113
+% http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
+% http://developers.google.com/maps/documentation/staticmaps/
+%
+%  Acknowledgement to Val Schmidt for his submission of get_google_map.m
+%  Acknowledgement to Zohar Bar-Yehuda for his submission of plot_google_map.mp
+%
+%% Copyright
+% Copyright (c) 2010, Zohar Bar-Yehuda
+% Copyright (c) 2010, Val Schmidt
+% All rights reserved.
+% 
+% Redistribution and use in source and binary forms, with or without 
+% modification, are permitted provided that the following conditions are 
+% met:
+% 
+%     * Redistributions of source code must retain the above copyright 
+%       notice, this list of conditions and the following disclaimer.
+%     * Redistributions in binary form must reproduce the above copyright 
+%       notice, this list of conditions and the following disclaimer in 
+%       the documentation and/or other materials provided with the distribution
+%       
+% THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+% AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+% IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+% ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+% LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+% CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+% SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+% INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+% CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+% ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+% POSSIBILITY OF SUCH DAMAGE.
+% 
+%% Example
+% Plot a map showing some capitals in Europe:
+%
+lat = [48.8708   51.5188   41.9260   40.4312   52.523   37.982];
+lon = [2.4131    -0.1300    12.4951   -3.6788    13.415   23.715];
+plot(lon,lat,'.r','MarkerSize',20)
+plotGoogleMap
+%
+
+
+##### SOURCE END #####
+--></body></html>

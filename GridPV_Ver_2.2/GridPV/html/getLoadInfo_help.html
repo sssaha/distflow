@@ -1,0 +1,341 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>getLoadInfo</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-11-24"><meta name="DC.source" content="getLoadInfo_help.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>getLoadInfo</h1><!--introduction--><p>Gets the information for all loads in the circuit</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Inputs</a></li><li><a href="#4">Outputs</a></li><li><a href="#5">Example</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre>Loads = getLoadInfo(DSSCircObj)
+Loads = getLoadInfo(DSSCircObj, loadNames)</pre><h2>Description<a name="2"></a></h2><p>Function to get the information about the loads in the circuit and return a structure with the information. If the optional input of loadNames is filled, the function returns information for the specified subset of loads, excluding the miscellaneous parameters mentioned in the outputs below.</p><h2>Inputs<a name="3"></a></h2><div><ul><li><b><tt>DSSCircObj</tt></b> - link to OpenDSS active circuit and command text (from DSSStartup)</li><li><b><tt>loadNames</tt></b> - optional cell array of line names to get information for</li></ul></div><h2>Outputs<a name="4"></a></h2><p><b><tt>Loads</tt></b> is a structure with all the parameters for the loads in the active circuit.  Fields are:</p><div><ul><li><i>name</i> - Name of the load.</li><li><i>busName</i> - Name of the associated bus.</li><li><i>numPhases</i> - Number of phases associated with the load.</li><li><i>enabled</i> - {1|0} indicates whether this element is enabled in the simulation.</li><li><i>coordinates</i> - Coordinates for the load's bus, obtained from getBusInfo.</li><li><i>distance</i> - Line distance from the load's bus to the substation, obtained from getBusInfo.</li><li><i>current</i> - average phase current</li><li><i>phaseVoltages</i> - Value of voltage magnitudes calculated from the complex voltage returned by OpenDSS. Length is always 3, returning 0 for phases not on the bus</li><li><i>phaseVoltagesPU</i> - Per-unit value of voltage magnitudes calculated from the complex per-unit voltage returned by OpenDSS. Length is always 3, returning 0 for phases not on the bus.</li><li><i>voltage</i>, <i>voltagePU</i>, <i>voltagePhasorPU</i>, <i>phaseVoltages</i>, <i>phaseVoltagePhasors</i>, ... <i>phaseVoltagePhasorsPU</i>, <i>phaseVoltagesLL</i>, <i>phaseVoltagesLLPU</i>, <i>voltageLL</i>, <i>voltageLLPU</i> - voltages and voltage phasors</li><li><i>seqVoltages</i>, <i>cplxVoltages</i>, <i>seqCurrents</i>, <i>cplxSeqCurrents</i> - zero, positive, and negative sequence voltages and currents magnitude or complex phasors</li><li><i>phasePowerReal</i> - 3-element array of the real components of each phase's complex power injected by generator. Phases that are not present will return 0.</li><li><i>phasePowerReactive</i> - 3-element array of the imaginary components of each phase's complex power injected by generator. Phases that are not present will return 0.</li><li><i>powerReal</i> - Total <i>phasePowerReal</i>.</li><li><i>powerReactive</i> - Total <i>phasePowerReactive</i>.</li><li><i>losses</i> - total real and imaginary power losses</li><li><i>phaseLosses</i> - real and imaginary power losses</li><li><i>xfkVA</i> - The kVA rating of the associated transformer.</li><li><i>kW</i>, <i>kvar</i>, <i>kva</i> - Rated power of the load.</li><li><i>kV</i> - Rated voltage.</li><li><i>PF</i> - Rate power factor of the load.</li><li><i>Idx</i>, <i>pctMean</i>, <i>pctStdDev</i>, <i>allocationFactor</i>, <i>Cfactor</i>, <i>class</i>, <i>isDelta</i>, <i>CVRcurve</i>, CVRwatts_, <i>CVRvars</i>, <i>daily</i>, <i>duty</i>, <i>kwhdays</i>, <i>model</i>, <i>numCust</i>, <i>Rneut</i>, <i>spectrum</i>, <i>VmaxPU</i>, <i>VminEmerg</i>, <i>VminNorm</i>, <i>VminPU</i>, <i>Xneut</i>, <i>yearly</i>, <i>status</i>, <i>growth</i> - OpenDSS load object properties</li></ul></div><h2>Example<a name="5"></a></h2><p>Returns load information in the circuit</p><pre class="codeinput">[DSSCircObj, DSSText, gridpvPath] = DSSStartup;
+DSSText.command = [<span class="string">'Compile "'</span> gridpvPath <span class="string">'ExampleCircuit\master_Ckt24.dss"'</span>];
+DSSText.command = <span class="string">'solve'</span>;
+Loads = getLoadInfo(DSSCircObj) <span class="comment">%Get information for all loads</span>
+Loads = getLoadInfo(DSSCircObj,DSSCircObj.ActiveCircuit.Loads.AllNames) <span class="comment">%Get information for all loads</span>
+Loads = getLoadInfo(DSSCircObj, {<span class="string">'360667000'</span>}) <span class="comment">%Get information for one load</span>
+Loads = getLoadInfo(DSSCircObj, [{<span class="string">'530877691_1'</span>};{<span class="string">'331431200'</span>}]); <span class="comment">%Get information for two loads</span>
+<span class="comment">%</span>
+</pre><pre class="codeoutput">
+Loads = 
+
+3891x1 struct array with fields:
+
+    name
+    busName
+    numPhases
+    enabled
+    current
+    coordinates
+    distance
+    voltage
+    voltagePU
+    voltagePhasorPU
+    phaseVoltages
+    phaseVoltagesPU
+    phaseVoltagePhasors
+    phaseVoltagePhasorsPU
+    phaseVoltagesLL
+    phaseVoltagesLLPU
+    voltageLL
+    voltageLLPU
+    seqVoltages
+    cplxSeqVoltages
+    seqCurrents
+    cplxSeqCurrents
+    phasePowerReal
+    phasePowerReactive
+    powerReal
+    powerReactive
+    losses
+    phaseLosses
+    xfkVA
+    kW
+    kvar
+    kva
+    kV
+    PF
+    Idx
+    pctMean
+    pctStdDev
+    allocationFactor
+    Cfactor
+    class
+    isDelta
+    CVRcurve
+    CVRwatts
+    CVRvars
+    daily
+    duty
+    kwhdays
+    model
+    numCust
+    Rneut
+    spectrum
+    VmaxPU
+    VminEmerg
+    VminNorm
+    VminPU
+    Xneut
+    yearly
+    status
+    growth
+
+
+Loads = 
+
+3891x1 struct array with fields:
+
+    name
+    busName
+    numPhases
+    enabled
+    current
+    coordinates
+    distance
+    voltage
+    voltagePU
+    voltagePhasorPU
+    phaseVoltages
+    phaseVoltagesPU
+    phaseVoltagePhasors
+    phaseVoltagePhasorsPU
+    phaseVoltagesLL
+    phaseVoltagesLLPU
+    voltageLL
+    voltageLLPU
+    seqVoltages
+    cplxSeqVoltages
+    seqCurrents
+    cplxSeqCurrents
+    phasePowerReal
+    phasePowerReactive
+    powerReal
+    powerReactive
+    losses
+    phaseLosses
+    xfkVA
+    kW
+    kvar
+    kva
+    kV
+    PF
+    Idx
+    pctMean
+    pctStdDev
+    allocationFactor
+    Cfactor
+    class
+    isDelta
+    CVRcurve
+    CVRwatts
+    CVRvars
+    daily
+    duty
+    kwhdays
+    model
+    numCust
+    Rneut
+    spectrum
+    VmaxPU
+    VminEmerg
+    VminNorm
+    VminPU
+    Xneut
+    yearly
+    status
+    growth
+
+
+Loads = 
+
+                     name: '360667000'
+                  busName: 'g2101ra0900_n300678_sec_2.1'
+                numPhases: 1
+                  enabled: 1
+                  current: 0.0489
+              coordinates: [0 0]
+                 distance: 6.9739
+                  voltage: 240.1923
+                voltagePU: 1.0025
+          voltagePhasorPU: 0.7660 - 0.6467i
+            phaseVoltages: [240.1923 0 0]
+          phaseVoltagesPU: [1.0025 0 0]
+      phaseVoltagePhasors: [1x3 double]
+    phaseVoltagePhasorsPU: [1x3 double]
+          phaseVoltagesLL: [240.1923 0 0]
+        phaseVoltagesLLPU: [1.0025 0 0]
+                voltageLL: 240.1923
+              voltageLLPU: 1.0025
+              seqVoltages: [1 1 1]
+          cplxSeqVoltages: [-1 0 -1 0 -1 0]
+              seqCurrents: [1 1 1]
+          cplxSeqCurrents: [-1 0 -1 0 -1 0]
+           phasePowerReal: 0.0115
+       phasePowerReactive: 0.0023
+                powerReal: 0.0115
+            powerReactive: 0.0023
+                   losses: 0.0115 + 0.0023i
+              phaseLosses: 0.0115 + 0.0023i
+                    xfkVA: 0.0106
+                       kW: 0.0115
+                     kvar: 0.0023
+                      kva: 0.0048
+                       kV: 0.2400
+                       PF: 0.9800
+                      Idx: 3723
+                  pctMean: 50
+                pctStdDev: 10
+         allocationFactor: 1.1102
+                  Cfactor: 4
+                    class: 1
+                  isDelta: 0
+                 CVRcurve: ''
+                 CVRwatts: 0.8000
+                  CVRvars: 3
+                    daily: ''
+                     duty: ''
+                  kwhdays: 30
+                    model: 'dssLoadCVR'
+                  numCust: 1
+                    Rneut: -1
+                 spectrum: 'defaultload'
+                   VmaxPU: 1.0500
+                VminEmerg: 0
+                 VminNorm: 0
+                   VminPU: 0.7000
+                    Xneut: 0
+                   yearly: ''
+                   status: 'dssLoadVariable'
+                   growth: ''
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% getLoadInfo
+% Gets the information for all loads in the circuit
+%
+%% Syntax
+%  Loads = getLoadInfo(DSSCircObj)
+%  Loads = getLoadInfo(DSSCircObj, loadNames)
+%
+%% Description
+% Function to get the information about the loads in the circuit and
+% return a structure with the information. If the optional input of
+% loadNames is filled, the function returns information for the specified
+% subset of loads, excluding the miscellaneous parameters mentioned in the
+% outputs below.
+%
+%% Inputs
+% * *|DSSCircObj|* - link to OpenDSS active circuit and command text (from DSSStartup)
+% * *|loadNames|* - optional cell array of line names to get information for
+%
+%% Outputs
+% *|Loads|* is a structure with all the parameters for the
+% loads in the active circuit.  Fields are:
+%
+% * _name_ - Name of the load.
+% * _busName_ - Name of the associated bus.
+% * _numPhases_ - Number of phases associated with the load.
+% * _enabled_ - {1|0} indicates whether this element is enabled in the simulation.
+% * _coordinates_ - Coordinates for the load's bus, obtained from getBusInfo.
+% * _distance_ - Line distance from the load's bus to the substation, obtained from getBusInfo.
+% * _current_ - average phase current
+% * _phaseVoltages_ - Value of voltage magnitudes calculated from
+% the complex voltage returned by OpenDSS. Length is always 3,
+% returning 0 for phases not on the bus
+% * _phaseVoltagesPU_ - Per-unit value of voltage magnitudes calculated from
+% the complex per-unit voltage returned by OpenDSS. Length is always 3,
+% returning 0 for phases not on the bus.
+% * _voltage_, _voltagePU_, _voltagePhasorPU_, _phaseVoltages_, _phaseVoltagePhasors_, ... 
+% _phaseVoltagePhasorsPU_, _phaseVoltagesLL_, _phaseVoltagesLLPU_, _voltageLL_, _voltageLLPU_ - voltages and voltage phasors
+% * _seqVoltages_, _cplxVoltages_, _seqCurrents_, _cplxSeqCurrents_ - zero, positive, and negative sequence voltages and currents magnitude or complex phasors
+% * _phasePowerReal_ - 3-element array of the real components of each
+% phase's complex power injected by generator. Phases that are not present will return 0.
+% * _phasePowerReactive_ - 3-element array of the imaginary components of each
+% phase's complex power injected by generator. Phases that are not present will return 0.
+% * _powerReal_ - Total _phasePowerReal_.
+% * _powerReactive_ - Total _phasePowerReactive_.
+% * _losses_ - total real and imaginary power losses
+% * _phaseLosses_ - real and imaginary power losses
+% * _xfkVA_ - The kVA rating of the associated transformer.
+% * _kW_, _kvar_, _kva_ - Rated power of the load.
+% * _kV_ - Rated voltage.
+% * _PF_ - Rate power factor of the load.
+% * _Idx_, _pctMean_, _pctStdDev_, _allocationFactor_, _Cfactor_, _class_, _isDelta_, _CVRcurve_, CVRwatts_, _CVRvars_, _daily_, _duty_,
+% _kwhdays_, _model_, _numCust_, _Rneut_, _spectrum_, _VmaxPU_, _VminEmerg_,
+% _VminNorm_, _VminPU_, _Xneut_, _yearly_, _status_, _growth_ - OpenDSS load object properties
+%
+%%% Example
+% Returns load information in the circuit
+%
+[DSSCircObj, DSSText, gridpvPath] = DSSStartup;
+DSSText.command = ['Compile "' gridpvPath 'ExampleCircuit\master_Ckt24.dss"'];
+DSSText.command = 'solve';
+Loads = getLoadInfo(DSSCircObj) %Get information for all loads
+Loads = getLoadInfo(DSSCircObj,DSSCircObj.ActiveCircuit.Loads.AllNames) %Get information for all loads
+Loads = getLoadInfo(DSSCircObj, {'360667000'}) %Get information for one load
+Loads = getLoadInfo(DSSCircObj, [{'530877691_1'};{'331431200'}]); %Get information for two loads
+%
+
+
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,157 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>plotVoltageProfile</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-11-24"><meta name="DC.source" content="plotVoltageProfile_help.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>plotVoltageProfile</h1><!--introduction--><p>Plots the voltage profile for the feeder (spider plot)</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Inputs</a></li><li><a href="#4">Outputs</a></li><li><a href="#5">Notes</a></li><li><a href="#6">Example</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre>plotVoltageProfile(DSSCircObj);
+plotVoltageProfile(DSSCircObj, _'PropertyName'_ ,PropertyValue);
+Handles = plotVoltageProfile(DSSCircObj, _'PropertyName'_ ,PropertyValue);</pre><h2>Description<a name="2"></a></h2><p>Function to plot the voltage profile for the feeder.  This is the bus voltage vs. distance from the substation plot.  Also called a spider plot.  Clicking on objects in the figure will display the name of the object, and right clicking will give a menu for viewing properties of the object.</p><h2>Inputs<a name="3"></a></h2><div><ul><li><b><tt>DSSCircObj</tt></b> - link to OpenDSS active circuit and command text (from DSSStartup)</li><li><b><tt>Properties</tt></b> - optional properties as one or more name-value pairs in any order</li><li>-- <b><tt>'SecondarySystem'</tt></b> - Property for if the secondary system (&lt;600V) should be plotted (if it exists) <tt>{'on'} | 'off'</tt></li><li>-- <b><tt>'Only3Phase'</tt></b> - Property for if only 3-phase power lines should be plotted <tt>'on' | {'off'}</tt></li><li>-- <b><tt>'AveragePhase'</tt></b> - Property for if the average voltage should be plotted alone or in addition to the phase plots <tt>'on' | {'off'} | 'addition'</tt></li><li>-- <b><tt>'LineToLine'</tt></b> - Property for if the voltage should be line-to-neutral or line-to-line <tt>'on' | {'off'}</tt></li><li>-- <b><tt>'VoltScale'</tt></b> - Property for the y-axis voltage scale <tt>{'120'} | 'pu'</tt></li><li>-- <b><tt>'DistanceScale'</tt></b> - Property for the x-axis distance scale <tt>{'km'} | 'mi' | 'ft'</tt></li><li>-- <b><tt>'BackgroundShade'</tt></b> - Property for if the range of voltage values should be shaded as an area <tt>'on' | {'off'}</tt></li><li>-- <b><tt>'BusName'</tt></b> - Property for the name of the bus (string) that the voltage profile should be plotted to.  Only the direct line between the bus and the substation will be plotted, unless all buses are selected. <tt>{'all'} | busName</tt></li><li>-- <b><tt>'Downstream'</tt></b> - If a BusName is given, all buses in the electrical path to the substation (upstream) will be plotted, and if this property is on, all buses in the electrical path downstream of BusName will be plotted too <tt>'on' | {'off'}</tt></li><li>-- <b><tt>'PVMarker'</tt></b> - Property for if the PV PCC should be marked <tt>{'on'} | 'off'</tt></li><li>-- <b><tt>'CapacitorMarker'</tt></b> - Property for if capacitors should be marked <tt>'on' | {'off'}</tt></li><li>-- <b><tt>'Lines'</tt></b> - Structure of the circuit lines from getLineInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.</li><li>-- <b><tt>'Transformers'</tt></b> - Structure of the circuit transformers from getTransformerInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.</li><li>-- <b><tt>'Capacitors'</tt></b> - Structure of the Capacitors from getCapacitorInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.</li><li>-- <b><tt>'PV'</tt></b> - Structure of the PV from getPVInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.</li></ul></div><h2>Outputs<a name="4"></a></h2><div><ul><li><b><tt>Handles</tt></b> - structure of handles for each type of object plotted in the figure</li><li>a figure is displayed with the plot</li></ul></div><h2>Notes<a name="5"></a></h2><p>For the right-click visualizations, the AllowForms field of DSSCircObj must be set to 1, which is the default value. Currently, OpenDSS 7.6.3 (the current version as of this writing) does not allow for setting the AllowForms field back to 1 after setting it to 0.</p><h2>Example<a name="6"></a></h2><p>Example of a feeder voltage profile plot</p><pre class="codeinput">[DSSCircObj, DSSText, gridpvPath] = DSSStartup;
+DSSText.command = [<span class="string">'Compile "'</span> gridpvPath <span class="string">'ExampleCircuit\master_Ckt24.dss"'</span>];
+DSSText.command = <span class="string">'solve'</span>;
+figure; plotVoltageProfile(DSSCircObj,<span class="string">'BusName'</span>,<span class="string">'N292743'</span>,<span class="string">'Downstream'</span>,<span class="string">'on'</span>);
+figure; plotVoltageProfile(DSSCircObj);
+figure; plotVoltageProfile(DSSCircObj,<span class="string">'DistanceScale'</span>,<span class="string">'ft'</span>,<span class="string">'VoltScale'</span>,<span class="string">'pu'</span>);
+figure; plotVoltageProfile(DSSCircObj,<span class="string">'SecondarySystem'</span>,<span class="string">'off'</span>,<span class="string">'AveragePhase'</span>,<span class="string">'addition'</span>,<span class="string">'Only3Phase'</span>,<span class="string">'on'</span>);
+figure; plotVoltageProfile(DSSCircObj,<span class="string">'BackgroundShade'</span>,<span class="string">'on'</span>,<span class="string">'SecondarySystem'</span>,<span class="string">'off'</span>);
+DSSText.command = [<span class="string">'Compile "'</span> gridpvPath <span class="string">'ExampleCircuit\Ckt24_PV_Distributed_7_5.dss"'</span>];
+DSSText.command = <span class="string">'Set mode=duty number=1  hour=12  h=1 sec=0'</span>;
+DSSText.command = <span class="string">'Set controlmode=static'</span>;
+DSSText.command = <span class="string">'solve'</span>;
+figure; plotVoltageProfile(DSSCircObj);
+<span class="comment">%</span>
+</pre><img vspace="5" hspace="5" src="plotVoltageProfile_help_01.png" alt=""> <img vspace="5" hspace="5" src="plotVoltageProfile_help_02.png" alt=""> <img vspace="5" hspace="5" src="plotVoltageProfile_help_03.png" alt=""> <img vspace="5" hspace="5" src="plotVoltageProfile_help_04.png" alt=""> <img vspace="5" hspace="5" src="plotVoltageProfile_help_05.png" alt=""> <img vspace="5" hspace="5" src="plotVoltageProfile_help_06.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% plotVoltageProfile
+% Plots the voltage profile for the feeder (spider plot)
+%
+%% Syntax
+%  plotVoltageProfile(DSSCircObj);
+%  plotVoltageProfile(DSSCircObj, _'PropertyName'_ ,PropertyValue);
+%  Handles = plotVoltageProfile(DSSCircObj, _'PropertyName'_ ,PropertyValue);
+%
+%% Description
+% Function to plot the voltage profile for the feeder.  This is the bus
+% voltage vs. distance from the substation plot.  Also called a spider
+% plot.  Clicking on objects in the figure will display the name of the object, and right clicking 
+% will give a menu for viewing properties of the object.
+%
+%% Inputs
+% * *|DSSCircObj|* - link to OpenDSS active circuit and command text (from DSSStartup)
+% * *|Properties|* - optional properties as one or more name-value pairs in any order
+% * REPLACE_WITH_DASH_DASH *|'SecondarySystem'|* - Property for if the secondary system (<600V)
+% should be plotted (if it exists) |{'on'} | 'off'|
+% * REPLACE_WITH_DASH_DASH *|'Only3Phase'|* - Property for if only 3-phase power lines
+% should be plotted |'on' | {'off'}|
+% * REPLACE_WITH_DASH_DASH *|'AveragePhase'|* - Property for if the average voltage should be
+% plotted alone or in addition to the phase plots |'on' | {'off'} | 'addition'|
+% * REPLACE_WITH_DASH_DASH *|'LineToLine'|* - Property for if the voltage should be line-to-neutral or line-to-line |'on' | {'off'}|
+% * REPLACE_WITH_DASH_DASH *|'VoltScale'|* - Property for the y-axis voltage scale |{'120'} | 'pu'|
+% * REPLACE_WITH_DASH_DASH *|'DistanceScale'|* - Property for the x-axis distance scale |{'km'} | 'mi' | 'ft'|
+% * REPLACE_WITH_DASH_DASH *|'BackgroundShade'|* - Property for if the range of voltage values should be shaded as an area |'on' | {'off'}|
+% * REPLACE_WITH_DASH_DASH *|'BusName'|* - Property for the name of the bus (string) that the voltage
+% profile should be plotted to.  Only the direct line between the bus and the substation
+% will be plotted, unless all buses are selected. |{'all'} | busName|
+% * REPLACE_WITH_DASH_DASH *|'Downstream'|* - If a BusName is given, all buses in the electrical 
+% path to the substation (upstream) will be plotted, and if this property is on, 
+% all buses in the electrical path downstream of BusName will be plotted too |'on' | {'off'}|
+% * REPLACE_WITH_DASH_DASH *|'PVMarker'|* - Property for if the PV PCC should be marked |{'on'} | 'off'|
+% * REPLACE_WITH_DASH_DASH *|'CapacitorMarker'|* - Property for if capacitors should be marked |'on' | {'off'}|
+% * REPLACE_WITH_DASH_DASH *|'Lines'|* - Structure of the circuit lines from getLineInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.
+% * REPLACE_WITH_DASH_DASH *|'Transformers'|* - Structure of the circuit transformers from getTransformerInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.
+% * REPLACE_WITH_DASH_DASH *|'Capacitors'|* - Structure of the Capacitors from getCapacitorInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.
+% * REPLACE_WITH_DASH_DASH *|'PV'|* - Structure of the PV from getPVInfo.  If no input is given, the structure is filled from the most current power flow solution in DSSCircObj COM.
+%
+%% Outputs
+% * *|Handles|* - structure of handles for each type of object plotted in the figure
+% * a figure is displayed with the plot
+%
+%% Notes
+% For the right-click visualizations, the AllowForms
+% field of DSSCircObj must be set to 1, which is the default value.
+% Currently, OpenDSS 7.6.3 (the current version as of this writing) does not
+% allow for setting the AllowForms field back to 1 after setting it to 0.
+%
+%%% Example
+% Example of a feeder voltage profile plot
+%
+[DSSCircObj, DSSText, gridpvPath] = DSSStartup;
+DSSText.command = ['Compile "' gridpvPath 'ExampleCircuit\master_Ckt24.dss"'];
+DSSText.command = 'solve';
+figure; plotVoltageProfile(DSSCircObj,'BusName','N292743','Downstream','on');
+figure; plotVoltageProfile(DSSCircObj);
+figure; plotVoltageProfile(DSSCircObj,'DistanceScale','ft','VoltScale','pu');
+figure; plotVoltageProfile(DSSCircObj,'SecondarySystem','off','AveragePhase','addition','Only3Phase','on');
+figure; plotVoltageProfile(DSSCircObj,'BackgroundShade','on','SecondarySystem','off');
+DSSText.command = ['Compile "' gridpvPath 'ExampleCircuit\Ckt24_PV_Distributed_7_5.dss"'];
+DSSText.command = 'Set mode=duty number=1  hour=12  h=1 sec=0';
+DSSText.command = 'Set controlmode=static';
+DSSText.command = 'solve';
+figure; plotVoltageProfile(DSSCircObj);
+%
+
+
+##### SOURCE END #####
+--></body></html>

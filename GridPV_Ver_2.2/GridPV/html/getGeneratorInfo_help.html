@@ -1,0 +1,268 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>getGeneratorInfo</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-11-24"><meta name="DC.source" content="getGeneratorInfo_help.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>getGeneratorInfo</h1><!--introduction--><p>Gets the information for all generators in the circuit</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Inputs</a></li><li><a href="#4">Outputs</a></li><li><a href="#5">Example</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre>Generators = getGeneratorInfo(DSSCircObj);
+Generators = getGeneratorInfo(DSSCircObj, generatorNames);</pre><h2>Description<a name="2"></a></h2><p>Function to get the information about the generators in the circuit and return a structure with the information. If the optional input of generatorNames is filled, the function returns information for the specified subset of generators, excluding the miscellaneous parameters mentioned in the outputs below.</p><h2>Inputs<a name="3"></a></h2><div><ul><li><b><tt>DSSCircObj</tt></b> - link to OpenDSS active circuit and command text (from DSSStartup)</li><li><b><tt>generatorNames</tt></b> - optional cell array of generator names to get information for</li></ul></div><h2>Outputs<a name="4"></a></h2><p><b><tt>Generators</tt></b> is a structure with all the parameters for the generators in the active circuit.  Fields are:</p><div><ul><li><i>name</i> - Name of the generator.</li><li><i>busName</i> - Name of the associated bus.</li><li><i>numPhases</i> - Number of phases associated with the generator.</li><li><i>enabled</i> - {1|0} indicates whether this element is enabled in the simulation.</li><li><i>nodes</i> - the connection nodes at the bus</li><li><i>current</i> - average phase current output</li><li><i>coordinates</i> - Coordinates for the bus</li><li><i>distance</i> - Line distance from the bus to the substation</li><li><i>phaseVoltages</i> - Value of voltage magnitudes calculated from the complex voltage returned by OpenDSS. Length is always 3, returning 0 for phases not on the bus</li><li><i>phaseVoltagesPU</i> - Per-unit value of voltage magnitudes calculated from the complex per-unit voltage returned by OpenDSS. Length is always 3, returning 0 for phases not on the bus.</li><li><i>voltage</i>, <i>voltagePU</i>, <i>voltagePhasorPU</i>, <i>phaseVoltages</i>, <i>phaseVoltagePhasors</i>, ... <i>phaseVoltagePhasorsPU</i>, <i>phaseVoltagesLL</i>, <i>phaseVoltagesLLPU</i>, <i>voltageLL</i>, <i>voltageLLPU</i> - voltages and voltage phasors</li><li><i>phasePowerReal</i> - 3-element array of the real components of each phase's complex power injected by generator. Phases that are not present will return 0.</li><li><i>phasePowerReactive</i> - 3-element array of the imaginary components of each phase's complex power injected by generator. Phases that are not present will return 0.</li><li><i>powerReal</i> - Total <i>phasePowerReal</i>.</li><li><i>powerReactive</i> - Total <i>phasePowerReactive</i>.</li><li><i>seqVoltages</i>, <i>cplxVoltages</i>, <i>seqCurrents</i>, <i>cplxSeqCurrents</i> - zero, positive, and negative sequence voltages and currents magnitude or complex phasors</li><li><i>losses</i> - total real and imaginary power losses</li><li><i>phaseLosses</i> - real and imaginary power losses</li><li><i>kW</i>, <i>kvar</i>, <i>kva</i> - Rated power of the generator</li><li><i>kV</i> - Rated voltage.</li><li><i>PF</i> - Rate power factor of the generator.</li></ul></div><h2>Example<a name="5"></a></h2><p>Returns generator information in the circuit</p><pre class="codeinput">[DSSCircObj, DSSText, gridpvPath] = DSSStartup;
+DSSText.command = [<span class="string">'Compile "'</span> gridpvPath <span class="string">'ExampleCircuit\master_Ckt24.dss"'</span>];
+DSSText.command = [<span class="string">'Compile "'</span> gridpvPath <span class="string">'ExampleCircuit\Ckt24_Generators_Distributed_7_5.dss"'</span>];
+DSSText.command = <span class="string">'solve'</span>;
+Generators = getGeneratorInfo(DSSCircObj) <span class="comment">%Get information for all generators</span>
+Generators = getGeneratorInfo(DSSCircObj,DSSCircObj.ActiveCircuit.Generators.AllNames) <span class="comment">%Get information for all generators</span>
+Generators = getGeneratorInfo(DSSCircObj, {<span class="string">'pvn312429_1_2_3'</span>}) <span class="comment">%Get information for one generator</span>
+Generators = getGeneratorInfo(DSSCircObj, [{<span class="string">'pvn300557_3'</span>};{<span class="string">'pvn300587_2'</span>}]); <span class="comment">%Get information for two generators</span>
+<span class="comment">%</span>
+</pre><pre class="codeoutput">
+Generators = 
+
+99x1 struct array with fields:
+
+    name
+    busName
+    numPhases
+    enabled
+    nodes
+    current
+    coordinates
+    distance
+    voltage
+    voltagePU
+    voltagePhasorPU
+    phaseVoltages
+    phaseVoltagesPU
+    phaseVoltagePhasors
+    phaseVoltagePhasorsPU
+    phaseVoltagesLL
+    phaseVoltagesLLPU
+    voltageLL
+    voltageLLPU
+    phasePowerReal
+    phasePowerReactive
+    powerReal
+    powerReactive
+    numTerminals
+    losses
+    phaseLosses
+    seqVoltages
+    cplxSeqVoltages
+    seqCurrents
+    cplxSeqCurrents
+    seqPowers
+    kV
+    kW
+    kvar
+    PF
+
+
+Generators = 
+
+99x1 struct array with fields:
+
+    name
+    busName
+    numPhases
+    enabled
+    nodes
+    current
+    coordinates
+    distance
+    voltage
+    voltagePU
+    voltagePhasorPU
+    phaseVoltages
+    phaseVoltagesPU
+    phaseVoltagePhasors
+    phaseVoltagePhasorsPU
+    phaseVoltagesLL
+    phaseVoltagesLLPU
+    voltageLL
+    voltageLLPU
+    phasePowerReal
+    phasePowerReactive
+    powerReal
+    powerReactive
+    numTerminals
+    losses
+    phaseLosses
+    seqVoltages
+    cplxSeqVoltages
+    seqCurrents
+    cplxSeqCurrents
+    seqPowers
+    kV
+    kW
+    kvar
+    PF
+
+
+Generators = 
+
+                     name: 'pvn312429_1_2_3'
+                  busName: 'n312429.1.2.3'
+                numPhases: 3
+                  enabled: 1
+                    nodes: [1 2 3]
+                  current: 5.3630
+              coordinates: [31.6376 -80.8964]
+                 distance: 6.2216
+                  voltage: 2.0456e+04
+                voltagePU: 1.0270
+          voltagePhasorPU: -0.0022 + 0.0053i
+            phaseVoltages: [2.0382e+04 2.0420e+04 2.0565e+04]
+          phaseVoltagesPU: [1.0233 1.0252 1.0325]
+      phaseVoltagePhasors: [1x3 double]
+    phaseVoltagePhasorsPU: [1x3 double]
+          phaseVoltagesLL: [3.5412e+04 3.5388e+04 3.5491e+04]
+        phaseVoltagesLLPU: [1.0264 1.0257 1.0287]
+                voltageLL: 3.5430e+04
+              voltageLLPU: 1.0270
+           phasePowerReal: [-109.7033 -109.7034 -109.7032]
+       phasePowerReactive: [-0.0018 -0.0015 -0.0012]
+                powerReal: -329.1099
+            powerReactive: -0.0044
+             numTerminals: 1
+                   losses: -3.2911e+02 - 4.4094e-03i
+              phaseLosses: [1x3 double]
+              seqVoltages: [113.4341 2.0456e+04 36.2038]
+          cplxSeqVoltages: [1x6 double]
+              seqCurrents: [0.0093 5.3630 0.0297]
+          cplxSeqCurrents: [0.0092 0.0016 -4.2845 3.2256 -0.0296 0.0034]
+                seqPowers: [1x6 double]
+                       kV: 34.5000
+                       kW: 329.1100
+                     kvar: 0
+                       PF: 1
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% getGeneratorInfo
+% Gets the information for all generators in the circuit
+%
+%% Syntax
+%  Generators = getGeneratorInfo(DSSCircObj);
+%  Generators = getGeneratorInfo(DSSCircObj, generatorNames);
+%
+%% Description
+% Function to get the information about the generators in the circuit and
+% return a structure with the information. If the optional input of
+% generatorNames is filled, the function returns information for the specified
+% subset of generators, excluding the miscellaneous parameters
+% mentioned in the outputs below.
+%
+%% Inputs
+% * *|DSSCircObj|* - link to OpenDSS active circuit and command text (from DSSStartup)
+% * *|generatorNames|* - optional cell array of generator names to get information for
+%
+%% Outputs
+% *|Generators|* is a structure with all the parameters for the
+% generators in the active circuit.  Fields are:
+%
+% * _name_ - Name of the generator.
+% * _busName_ - Name of the associated bus.
+% * _numPhases_ - Number of phases associated with the generator.
+% * _enabled_ - {1|0} indicates whether this element is enabled in the simulation.
+% * _nodes_ - the connection nodes at the bus
+% * _current_ - average phase current output
+% * _coordinates_ - Coordinates for the bus
+% * _distance_ - Line distance from the bus to the substation
+% * _phaseVoltages_ - Value of voltage magnitudes calculated from
+% the complex voltage returned by OpenDSS. Length is always 3,
+% returning 0 for phases not on the bus
+% * _phaseVoltagesPU_ - Per-unit value of voltage magnitudes calculated from
+% the complex per-unit voltage returned by OpenDSS. Length is always 3,
+% returning 0 for phases not on the bus.
+% * _voltage_, _voltagePU_, _voltagePhasorPU_, _phaseVoltages_, _phaseVoltagePhasors_, ... 
+% _phaseVoltagePhasorsPU_, _phaseVoltagesLL_, _phaseVoltagesLLPU_, _voltageLL_, _voltageLLPU_ - voltages and voltage phasors
+% * _phasePowerReal_ - 3-element array of the real components of each
+% phase's complex power injected by generator. Phases that are not present will return 0.
+% * _phasePowerReactive_ - 3-element array of the imaginary components of each
+% phase's complex power injected by generator. Phases that are not present will return 0.
+% * _powerReal_ - Total _phasePowerReal_.
+% * _powerReactive_ - Total _phasePowerReactive_.
+% * _seqVoltages_, _cplxVoltages_, _seqCurrents_, _cplxSeqCurrents_ - zero, positive, and negative sequence voltages and currents magnitude or complex phasors
+% * _losses_ - total real and imaginary power losses
+% * _phaseLosses_ - real and imaginary power losses
+% * _kW_, _kvar_, _kva_ - Rated power of the generator
+% * _kV_ - Rated voltage.
+% * _PF_ - Rate power factor of the generator.
+%
+%%% Example
+% Returns generator information in the circuit
+%
+[DSSCircObj, DSSText, gridpvPath] = DSSStartup;
+DSSText.command = ['Compile "' gridpvPath 'ExampleCircuit\master_Ckt24.dss"'];
+DSSText.command = ['Compile "' gridpvPath 'ExampleCircuit\Ckt24_Generators_Distributed_7_5.dss"'];
+DSSText.command = 'solve';
+Generators = getGeneratorInfo(DSSCircObj) %Get information for all generators
+Generators = getGeneratorInfo(DSSCircObj,DSSCircObj.ActiveCircuit.Generators.AllNames) %Get information for all generators
+Generators = getGeneratorInfo(DSSCircObj, {'pvn312429_1_2_3'}) %Get information for one generator
+Generators = getGeneratorInfo(DSSCircObj, [{'pvn300557_3'};{'pvn300587_2'}]); %Get information for two generators
+%
+
+
+##### SOURCE END #####
+--></body></html>
